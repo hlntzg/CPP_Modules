@@ -6,17 +6,17 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:47:38 by hutzig            #+#    #+#             */
-/*   Updated: 2025/02/22 19:46:27 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/02/24 18:46:03 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 
 // Constructor
-Phonebook::Phonebook() : _index(0), _count(0) {}
+PhoneBook::PhoneBook() : _index(0), _count(0) {}
 
 // Destructor
-Phonebook::~Phonebook() {}
+PhoneBook::~PhoneBook() {}
 
 void	PhoneBook::addContact(void)
 {
@@ -25,7 +25,7 @@ void	PhoneBook::addContact(void)
         if (_count < 8) {
             _count++;
         } else {
-            std::cout << "Phonebook is full. Oldest contact replaced." << std::endl;
+            std::cout << "PhoneBook is full. Oldest contact replaced." << std::endl;
         }
         _index++;
     }
@@ -37,7 +37,7 @@ void	PhoneBook::addContact(void)
 void	PhoneBook::searchContact(void)
 {
 	if (_count == 0) {
-		std::cout << "Phonebook is empty!" << std::endl;
+		std::cout << "PhoneBook is empty!" << std::endl;
 		return;
 	}
 	std::cout << std::setw(10) << "Index" << "|"
@@ -69,10 +69,10 @@ void	PhoneBook::searchContact(void)
 	}
 }
 
-std::string Phonebook::truncate(const std::string &str)
+std::string PhoneBook::truncate(const std::string &str)
 {
     if (str.length() > 10) {
-        return str.substr(0, 9) + ".";
+        return (str.substr(0, 9) + ".");
     }
-    return str;
+    return (str);
 }

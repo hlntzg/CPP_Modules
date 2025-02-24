@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:36:34 by hutzig            #+#    #+#             */
-/*   Updated: 2025/02/22 17:04:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/02/24 19:10:08 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	main(void){
 			phonebook.addContact();
 		else if (input == "SEARCH")
 			phonebook.searchContact();
-		else if (input == "EXIT" || std::cin.eof()) {
-			std::cout << "Exiting program.!" << std::endl;
+		else if (input == "EXIT" || std::cin.fail()) {
+			std::cout << "Exiting program." << std::endl;
 			break ;
 		}
 		else
