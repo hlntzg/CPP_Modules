@@ -1,5 +1,5 @@
 
-NAME		=	zombieee
+NAME		=	BraiiiiiiinnnzzzZ
 
 SRC_PATH	=	./sources
 HEADER_PATH	=	./includes
