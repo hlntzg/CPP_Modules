@@ -1,11 +1,11 @@
 
-NAME		=	UNNECESSARY_VIOLENCE
+NAME		=	Unnecessary_violence
 
 SRC_PATH	=	./sources
 HEADER_PATH	=	./includes
 
 SRC 		=	main.cpp \
-				Wapon.cpp \
+				Weapon.cpp \
 				HumanA.cpp \
 				HumanB.cpp \
 
@@ -27,7 +27,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)/%.cpp
 			@echo "$(CY)[✔] Compilation successful: Object files created.$(RESET)"
 
 $(NAME): 	$(OBJ)
-			@echo "$(GR)[Linking] Creating executable '$(NAME)'$(RESET)"
+			@echo "$(NEW)$(GR)[Linking] Creating executable '$(NAME)'$(RESET)"
 			$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 			@echo "$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
 

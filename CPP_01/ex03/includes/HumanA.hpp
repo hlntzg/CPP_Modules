@@ -8,12 +8,12 @@
 class HumanA {
 	private:
 		std::string _name;
-		Weapon&		_weapon;
+		Weapon&		_weapon; // reference to Weapon (cannot be null)
 	public:
-		HumanA(std::string firstName, Weapon& firstWeapon);
+		HumanA(const std::string& name, Weapon& aWeapon);
 		~HumanA();
 		
-		void	attack(void);
+		void	attack(void) const;
 };
 
 #endif
