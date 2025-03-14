@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 09:34:50 by hutzig            #+#    #+#              #
-#    Updated: 2025/03/10 09:49:41 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/14 16:32:06 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ OBJ 		=	$(addprefix $(OBJ_PATH), $(notdir $(SRC_FILES:.cpp=.o)))
 all:			$(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)/%.cpp
-			@echo "$(NEW)$(GR)[Compiling] Converting $< >> $@$(RESET)"
+			@echo "$(GR)[Compiling] Converting $< >> $@$(RESET)"
 			@mkdir -p $(OBJ_PATH)
 			$(CC) $(CFLAGS) -c $< -o $@
 			@echo "$(CY)[✔] Compilation successful: Object files created.$(RESET)"
@@ -38,7 +38,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)/%.cpp
 $(NAME): 	$(OBJ)
 			@echo "$(GR)[Linking] Creating executable '$(NAME)'$(RESET)"
 			$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-			@echo "$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
+			@echo "$(NEW)$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
 
 clean:
 			@$(RM) $(OBJ) $(OBJ_PATH)
