@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 08:54:31 by hutzig            #+#    #+#              #
-#    Updated: 2025/02/21 11:25:28 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/14 16:19:37 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,9 @@ fclean:		clean
 			@echo "$(RE)[✔] Executable '$(NAME)' removed.$(RESET)"
 
 re:			fclean all
+
+test:		all
+			@./megaphone_tester.sh
 
 # Colors
 CY			= \033[1;36m
