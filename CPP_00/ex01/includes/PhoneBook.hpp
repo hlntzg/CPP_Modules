@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:35:36 by hutzig            #+#    #+#             */
-/*   Updated: 2025/02/24 18:59:29 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/14 15:34:30 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,12 @@ class PhoneBook{
 		Contact _contacts[8];
 
 	public:
-		// Constructor & Destructor
 		PhoneBook();
 		~PhoneBook();
 		
 		void	addContact();
 		void	searchContact();
-		std::string truncate(const std::string &str);
+		std::string truncate(const std::string& str);
 };
 
 #endif

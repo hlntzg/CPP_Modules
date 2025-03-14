@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:48:35 by hutzig            #+#    #+#             */
-/*   Updated: 2025/02/24 19:03:33 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/14 15:28:16 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,27 @@ void	Contact::setDarkestSecret(std::string darkestSecret)
 	_darkestSecret = darkestSecret;
 }
 
-std::string	Contact::getFirstName(void) { return (_firstName); }
-std::string	Contact::getLastName(void) { return (_lastName); }
-std::string	Contact::getNickname(void) { return (_nickname); }
-std::string	Contact::getPhoneNumber(void) { return (_phoneNumber); }
-std::string	Contact::getDarkestSecret(void) { return (_darkestSecret); }
+std::string	Contact::getFirstName(void) const { return (_firstName); }
+std::string	Contact::getLastName(void) const { return (_lastName); }
+std::string	Contact::getNickname(void) const { return (_nickname); }
+std::string	Contact::getPhoneNumber(void) const { return (_phoneNumber); }
+std::string	Contact::getDarkestSecret(void) const { return (_darkestSecret); }
 
-void Contact::setContact()
+bool Contact::setContact()
 {
     const std::string prompts[] = {
-        "\tEnter first name: ", "\tEnter last name: ", 
-        "\tEnter nickname: ", "\tEnter phone number: ", 
+        "\tEnter first name: ",
+		"\tEnter last name: ", 
+        "\tEnter nickname: ",
+		"\tEnter phone number: ", 
         "\tEnter darkest secret: "
     };
 
     void (Contact::*setters[])(const std::string) = {
-        &Contact::setFirstName, &Contact::setLastName,
-        &Contact::setNickname, &Contact::setPhoneNumber,
+        &Contact::setFirstName,
+		&Contact::setLastName,
+        &Contact::setNickname,
+		&Contact::setPhoneNumber,
         &Contact::setDarkestSecret
     };
 
@@ -93,27 +97,32 @@ void Contact::setContact()
         for (int attempts = 0; attempts < 3 && !valid; attempts++) {
             std::cout << prompts[i];
             std::getline(std::cin, input);
-            try {
+
+			if (std::cin.eof() || input == "CANCEL")
+				return (false);
+            
+			try {
                 (this->*setters[i])(input);
                 valid = true;
             } catch (const std::exception& e) {
-                std::cout << "Invalid input. Please try again." << std::endl;
+			    std::cout << "Error: " << e.what() << " Please try again." << std::endl;
             }
         }
         if (!valid) {
             std::cout << "Failed to set contact. Operation canceled." << std::endl;
-			std::cin.clear();
-            return ;
+            return (false);
         }
     }
-    std::cout << "Contact added successfully!" << std::endl;
+	return (true);
 }
 
 void	Contact::displayContact(void)
 {
-	std::cout << "First name:\t" << _firstName << std::endl;
-	std::cout << "Last name:\t" << _lastName << std::endl;
-	std::cout << "Nickname:\t" << _nickname << std::endl;
-	std::cout << "Phone number:\t" << _phoneNumber << std::endl;
-	std::cout << "Darkest secret:\t" << _darkestSecret << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
+	std::cout << "\tFirst name:\t" << _firstName << std::endl;
+	std::cout << "\tLast name:\t" << _lastName << std::endl;
+	std::cout << "\tNickname:\t" << _nickname << std::endl;
+	std::cout << "\tPhone number:\t" << _phoneNumber << std::endl;
+	std::cout << "\tDarkest secret:\t" << _darkestSecret << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
 }

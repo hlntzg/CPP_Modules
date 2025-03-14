@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 15:34:59 by hutzig            #+#    #+#             */
-/*   Updated: 2025/02/22 19:48:32 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:56:15 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ class Contact{
 		void		setDarkestSecret(std::string darkestSecret);
 		
 		// Getters
-		std::string	getFirstName();
-		std::string	getLastName();
-		std::string	getNickname();
-		std::string	getPhoneNumber();
-		std::string	getDarkestSecret();
+		std::string	getFirstName() const;
+		std::string	getLastName() const;
+		std::string	getNickname() const;
+		std::string	getPhoneNumber() const;
+		std::string	getDarkestSecret() const;
 		
-		void		setContact();
+		bool		setContact();
 		void		displayContact();
 };
 
