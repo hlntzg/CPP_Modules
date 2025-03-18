@@ -110,7 +110,7 @@ void	Account::displayStatus(void) const {
 
 // Private member function to display the current timestamp
 void	Account::_displayTimestamp(void) {
-    char result[15];
+    char result[18];
     
 	std::time_t currentTime = std::time(0);
     std::strftime(result, sizeof(result), "%Y%m%d_%H%M%S", std::localtime(&currentTime));  

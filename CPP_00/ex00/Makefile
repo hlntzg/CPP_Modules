@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 08:54:31 by hutzig            #+#    #+#              #
-#    Updated: 2025/03/14 16:31:26 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/17 12:43:01 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		= megaphone
 SRC 		= megaphone.cpp
 
 CC			= c++
-CFLAGS		= -Wall -Wextra -Werror -std=c++11
+CFLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
 OBJ_PATH	=./obj/
@@ -24,23 +24,23 @@ OBJ 		= $(addprefix $(OBJ_PATH), $(notdir $(SRC:.cpp=.o)))
 all:		$(NAME)
 
 $(OBJ_PATH)%.o: %.cpp
-			@echo "$(GR)[Compiling] Converting $< >> $@$(RESET)"
+			@echo "$(YELLOW)[Compiling] Converting $< >> $@$(RESET)"
 			@mkdir -p $(OBJ_PATH)
 			$(CC) $(CFLAGS) -c $< -o $@
-			@echo "$(CY)[✔] Compilation successful: Object files created.$(RESET)"
+			@echo "$(GREEN)[✔] Compilation successful: Object files created.$(RESET)"
 
 $(NAME): 	$(OBJ)
-			@echo "$(GR)[Linking] Creating executable '$(NAME)'$(RESET)"
+			@echo "$(YELLOW)[Linking] Creating executable '$(NAME)'$(RESET)"
 			$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 			@echo "$(NEW)$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
 
 clean:
 			@$(RM) $(OBJ) $(OBJ_PATH)
-			@echo "$(RE)[✔] Objects files removed.$(RESET)"
+			@echo "$(GREEN)[✔] Objects files removed.$(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "$(RE)[✔] Executable '$(NAME)' removed.$(RESET)"
+			@echo "$(GREEN)[✔] Executable '$(NAME)' removed.$(RESET)"
 
 re:			fclean all
 
@@ -48,12 +48,17 @@ test:		all
 			@./megaphone_tester.sh
 
 # Colors
-CY			= \033[1;36m
-YE			= \033[1;33m
-GR			= \033[1;32m
-RE			= \033[1;31m
-RESET		= \033[0m
-NEW			= \033[1;1H\033[2J
-SWAP		= \033[7m
+NEW		=\033[1;1H\033[2J
+SWAP	=\033[7m
+RESET	=\e[0m
+BLACK	=\e[0;30m
+RED		=\e[0;31m
+GREEN	=\e[0;32m
+YELLOW	=\e[0;33m
+BLUE	=\e[0;34m
+PURPLE	=\e[0;35m
+CYAN	=\e[0;36m
+WHITE	=\e[0;37m
+GREY	=\e[0;39m
 
 .PHONY: all clean fclean re
