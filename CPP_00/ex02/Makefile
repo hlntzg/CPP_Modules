@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/02/17 09:34:50 by hutzig            #+#    #+#              #
-#    Updated: 2025/03/18 11:21:08 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/19 17:17:44 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,39 +30,25 @@ OBJ 		=	$(addprefix $(OBJ_PATH), $(notdir $(SRC_FILES:.cpp=.o)))
 all:			$(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)/%.cpp
-			@echo "$(YELLOW)[Compiling] Converting $< >> $@$(RESET)"
 			@mkdir -p $(OBJ_PATH)
 			$(CC) $(CFLAGS) -c $< -o $@
-			@echo "$(GREEN)[✔] Compilation successful: Object files created.$(RESET)"
 
 $(NAME): 	$(OBJ)
-			@echo "$(YELLOW)[Linking] Creating executable '$(NAME)'$(RESET)"
 			$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
-			@echo "$(NEW)$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
+			@echo "$(SWAP)[✔] Build complete! Run './$(NAME)'.$(RESET)"
 
 clean:
 			@$(RM) $(OBJ) $(OBJ_PATH)
-			@echo "$(GREEN)[✔] Objects files removed.$(RESET)"
+			@echo "$(SWAP)[✔] Objects files removed.$(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "$(GREEN)[✔] Executable '$(NAME)' removed.$(RESET)"
+			@echo "$(SWAP)[✔] Executable '$(NAME)' removed.$(RESET)"
 
 re:			fclean all
 
 # Colors
-NEW		=\033[1;1H\033[2J
 SWAP	=\033[7m
 RESET	=\e[0m
-BLACK	=\e[0;30m
-RED		=\e[0;31m
-GREEN	=\e[0;32m
-YELLOW	=\e[0;33m
-BLUE	=\e[0;34m
-PURPLE	=\e[0;35m
-CYAN	=\e[0;36m
-WHITE	=\e[0;37m
-GREY	=\e[0;39m
-SWAP		= \033[7m
 
 .PHONY: all clean fclean re
