@@ -1,4 +1,4 @@
-#include <Fixed.hpp>
+#include "Fixed.hpp"
 #include <iostream>
 #include <cmath>
 
@@ -6,24 +6,28 @@
 Fixed::Fixed(void) : _rawValue(0) {
 	std::cout << "Default constructor called." << std::endl;
 }
-
-		
+	
 // parameterized Constructor
+// convert value into fixed-point by shifting left by _fractionalBits (value multiplied by 2^_fractionalBits)
 Fixed::Fixed(const int value) {
 	std::cout << "Int constructor called." << std::endl;
 	_rawValue = value << _fractionalBits;
 }
 
 // parameterized Constructor
+// convert value into fixed-point by multipling value by 2^_fractionalBits and round to the nearest integer
+// note: left shift (<<) operator cannot be used on float
 Fixed::Fixed(const float value) {
 	std::cout << "Float constructor called." << std::endl;
 	_rawValue = roundf(value * (1 << _fractionalBits));
 }
 
 // copy constructor
-Fixed::Fixed(const Fixed &other) {
+// copies _rawValue from other to the new object.
+Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {
 	std::cout << "Copy constructor called." << std::endl;
-	_rawValue = other.getRawBits();
+//	_rawValue = other._rawValue;
+	*this = other;
 }
 
 // copy assignment operator overload
@@ -32,7 +36,7 @@ Fixed &Fixed::operator=(const Fixed &other) {
 	if (this != &other) {
 		_rawValue = other.getRawBits();
 	}
-	return (*this); // Required for chaining
+	return (*this);
 }
 
 // destructor
@@ -41,19 +45,19 @@ Fixed::~Fixed(void) {
 }
 
 int		Fixed::getRawBits(void) const {
-	std::cout << "getRawBits member function called." << std::endl;
 	return (_rawValue);
 }
 
 void	Fixed::setRawBits(int const raw) {
-	std::cout << "setRawBits member function called." << std::endl;
 	_rawValue = raw;
 }
 
+// converts the fixed-point value to a floating-point
 float	Fixed::toFloat(void) const {
-	return ((float)_rawValue / (float)(1 << _fractionalBits));
+	return (static_cast<float>(_rawValue) / static_cast<float>(1 << _fractionalBits));
 }
 
+// converts the fixed-point value to a integer
 int		Fixed::toInt(void) const {
 	return (_rawValue >> _fractionalBits);
 }
