@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 16:24:55 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/19 16:25:08 by hutzig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Zombie.hpp"
 
 Zombie*	zombieHorde(int N, std::string name) {
@@ -16,7 +28,7 @@ Zombie*	zombieHorde(int N, std::string name) {
 		std::cout << "Memory allocation failed." << std::endl;
 		return (nullptr);
 	}
-	// Initialize each Zombie with the given name, adding index for uniqueness:w
+	// Initialize each Zombie with the given name, adding index for uniqueness
 	for (int i = 0; i < N; i++) {
 		horde[i].setName(name + "_" + std::to_string(i + 1));
 	}

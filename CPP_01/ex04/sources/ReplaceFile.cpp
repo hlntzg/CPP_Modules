@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ReplaceFile.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/19 16:26:25 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/19 16:26:27 by hutzig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ReplaceFile.hpp"
 
 ReplaceFile::ReplaceFile(const std::string& filename, const std::string& string1, const std::string& string2) : 
