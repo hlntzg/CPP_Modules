@@ -28,11 +28,11 @@ $(NAME): 	$(OBJ)
 
 clean:
 			@$(RM) $(OBJ) $(OBJ_PATH)
-			@echo "[✔] Objects files removed."
+			@echo "$(SWAP)[✔] Objects files removed.$(RESET)"
 
 fclean:		clean
 			@$(RM) $(NAME)
-			@echo "[✔] Executable '$(NAME)' removed."
+			@echo "$(SWAP)[✔] Executable '$(NAME)' removed.$(RESET)"
 
 re:			fclean all
 

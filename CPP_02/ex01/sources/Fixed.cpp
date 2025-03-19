@@ -23,9 +23,8 @@ Fixed::Fixed(const float value) {
 
 // copy constructor
 // copies _rawValue from other to the new object.
-Fixed::Fixed(const Fixed &other) {
+Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {
 	std::cout << "Copy constructor called." << std::endl;
-	*this = other;
 }
 
 // copy assignment operator overload

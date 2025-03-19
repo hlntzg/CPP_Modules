@@ -15,9 +15,7 @@ Fixed::Fixed(const float value) {
 }
 
 // Copy Constructor
-Fixed::Fixed(const Fixed &other) {
-	*this = other;
-}
+Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {}
 
 // Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other) {

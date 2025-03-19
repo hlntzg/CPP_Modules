@@ -8,8 +8,6 @@ Fixed::Fixed(void) : _rawValue(0) {
 // copy constructor
 Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {
 	std::cout << "Copy constructor called." << std::endl;
-	//_rawValue = other.getRawBits();
-	*this = other;
 }
 
 // copy assignment operator overload
