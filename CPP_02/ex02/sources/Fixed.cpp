@@ -15,12 +15,14 @@ Fixed::Fixed(const float value) {
 }
 
 // Copy Constructor
-Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {}
+Fixed::Fixed(const Fixed &other) {
+	*this = other;
+}
 
 // Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other) {
 	if (this != &other) {
-		_rawValue = other.getRawBits();
+		_rawValue = other._rawValue;
 	}
 	return (*this);
 }
