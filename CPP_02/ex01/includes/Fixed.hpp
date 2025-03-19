@@ -27,4 +27,3 @@ class	Fixed {
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed); // overload of the insertion («) operator
 
 #endif
-

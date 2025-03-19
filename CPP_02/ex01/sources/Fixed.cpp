@@ -1,5 +1,4 @@
 #include "Fixed.hpp"
-#include <iostream>
 #include <cmath>
 
 // default constructor
@@ -24,9 +23,8 @@ Fixed::Fixed(const float value) {
 
 // copy constructor
 // copies _rawValue from other to the new object.
-Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {
+Fixed::Fixed(const Fixed &other) {
 	std::cout << "Copy constructor called." << std::endl;
-//	_rawValue = other._rawValue;
 	*this = other;
 }
 
