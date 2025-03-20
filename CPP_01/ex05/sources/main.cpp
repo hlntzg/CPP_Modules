@@ -6,14 +6,11 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:29:14 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:29:16 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 09:00:09 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Harl.hpp"
-
-#define SWAP "\033[7m";
-#define RESET "\033[0m";
 
 int	main(void)
 {
@@ -24,25 +21,29 @@ int	main(void)
 	
 	Harl	harl;
 	
-	std::cout	<< SWAP << "  TESTING HARL 2.0 FOR DEBUG LEVEL  " << RESET << std::endl
+	std::cout	<< "  TESTING HARL 2.0 FOR DEBUG LEVEL  " << std::endl
 				<< "------------------------------------" << std::endl;
 	harl.complain("DEBUG");
-	std::cout	<< std::endl;
+	std::cout	<< "------------------------------------" << std::endl
+				<< std::endl;
 	
-	std::cout	<< SWAP << "  TESTING HARL 2.0 FOR INFO LEVEL   " << RESET << std::endl
+	std::cout	<< "  TESTING HARL 2.0 FOR INFO LEVEL   " << std::endl
 				<< "------------------------------------" << std::endl;
 	harl.complain("INFO");
-	std::cout	<< std::endl;
+	std::cout	<< "------------------------------------" << std::endl
+				<< std::endl;
 	
-	std::cout	<< SWAP << " TESTING HARL 2.0 FOR WARNING LEVEL " << RESET << std::endl
+	std::cout	<< " TESTING HARL 2.0 FOR WARNING LEVEL " << std::endl
 				<< "------------------------------------" << std::endl;
 	harl.complain("WARNING");
-	std::cout	<< std::endl;
+	std::cout	<< "------------------------------------" << std::endl
+				<< std::endl;
 	
-	std::cout	<< SWAP << "  TESTING HARL 2.0 FOR ERROR LEVEL  " << RESET << std::endl
+	std::cout	<< "  TESTING HARL 2.0 FOR ERROR LEVEL  " << std::endl
 				<< "------------------------------------" << std::endl;
 	harl.complain("ERROR");
-	std::cout	<< std::endl;
+	std::cout	<< "------------------------------------" << std::endl
+				<< std::endl;
 	
 	return (0);
 }

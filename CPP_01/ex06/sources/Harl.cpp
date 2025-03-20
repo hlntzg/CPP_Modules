@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:29:40 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:30:15 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 09:08:51 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 Harl::Harl(void) {}
 
 Harl::~Harl(void) {
-	std::cout << "[✔] Harl Filter: Log levels test completed." << std::endl;
+	std::cout << "[✔] Harl Filter: Log levels test completed." << std::endl << std::endl;
 }
 
 void	Harl::_debug(void) {

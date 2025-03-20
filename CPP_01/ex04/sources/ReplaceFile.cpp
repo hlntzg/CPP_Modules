@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:26:25 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:26:27 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 08:54:34 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ ReplaceFile::ReplaceFile(const std::string& filename, const std::string& string1
 		throw std::invalid_argument("Error: Search string cannot be empty.");
 	}
 	
-	// open filename
+	// Open filename
 	std::ifstream		file(filename);
 	if (!file)
         throw std::ios_base::failure("Error: Cannot open file '" + filename + "' ");
 
-	// check empty file (move to the end, if size is 0, it's empty)
+	// Check empty file by moving to the end (if size is 0, it's empty)
     file.seekg(0, std::ios::end);
     if (file.tellg() == 0) {
         throw std::invalid_argument("Error: File cannot be empty.");
     }
     file.seekg(0, std::ios::beg);  // move back to the beginning of the file
 
-	// create outfile with ".replace"
-	const std::string			outfile = filename + ".replace";
+	// Create outfile with sulffix ".replace"
+	const std::string	outfile = filename + ".replace";
 	_outfile.open(outfile);
 	if (!_outfile) {
         throw std::ios_base::failure("Error: Cannot create new file '" + outfile + "' ");
 	}
 
-	// read, process and get each line
+	// Read, process and get each line
 	std::string			line;
 	while (std::getline(file, line)) {
 		_outfile << _replaceString(line) << std::endl;

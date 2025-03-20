@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:26:47 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:29:07 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 08:34:56 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class	Harl {
 	public:
 		Harl(void);
 		~Harl(void);
+
 		void	complain(std::string level);
 };
 

@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:25:24 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:25:27 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 08:46:44 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int	main(void) {
 				<< "-----------------------------------" << std::endl
 				<< std::endl;
 
-	std::string		myString = "HI THIS IS BRAIN";
-	std::string*	stringPTR = &myString;
-	std::string&	stringREF = myString;
+	std::string		myString = "HI THIS IS BRAIN";		// string variable
+	std::string*	stringPTR = &myString;				// pointer to the string
+	std::string&	stringREF = myString;				// reference to the string
 
 	std::cout	<< std::endl
 				<< "     VARIABLES' MEMORY ADDRESS     " << std::endl

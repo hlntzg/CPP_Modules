@@ -6,7 +6,7 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/19 16:24:09 by hutzig            #+#    #+#              #
-#    Updated: 2025/03/19 16:24:12 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/20 09:54:27 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC 		=	main.cpp \
 SRC_FILES	=	$(addprefix $(SRC_PATH)/,$(SRC))
 
 CC			=	c++
-CFLAGS		=	-Wall -Wextra -Werror -std=c++98 -I$(HEADER_PATH)
+CFLAGS		=	-Wall -Wextra -Werror -std=c++11 -I$(HEADER_PATH)
 RM			=	rm -rf
 
 OBJ_PATH	=	./objects/

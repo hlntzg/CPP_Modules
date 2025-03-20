@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:26:00 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/19 16:26:01 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/20 08:48:17 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(void)
 		bob.attack();
 	}
 	std::cout	<< "[✔] Attack from Human A completed" << std::endl
+				<< "-----------------------------------" << std::endl
 				<< std::endl;
 	
 	std::cout	<< "... TESTING ATTACK FROM HUMAN B ..." << std::endl
@@ -49,6 +50,7 @@ int	main(void)
 		jim.attack();
 	}
 	std::cout	<< "[✔] Attack from Human B completed" << std::endl
+				<< "-----------------------------------" << std::endl
 				<< std::endl;
 
 	return (0);
