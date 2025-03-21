@@ -3,9 +3,9 @@
 #include <string>
 #include <iostream>
 /*
-Fixed*	getCoordinates(char **argv) {
+float*	getCoordinates(char **argv) {
 	
-	Fixed*	args = nullptr;
+	float	args = nullptr;
 
 	try {
 		args = new Fixed[8];
@@ -40,7 +40,6 @@ void	checkPoint(Point const a, Point const b, Point const c, Point const point)
 }
 
 int	main(int argc, char **argv) {
-
 	if (argc != 9) {
 		std::cout	<< std::endl << "Error: Invalid number of arguments.\n"
 					<< "Usage: ./BSP <xP> <yP> <xA> <yA> <xB> <yB> <xC> <yC>\n"
@@ -56,34 +55,34 @@ int	main(int argc, char **argv) {
 	}
 	
 	std::cout	<< std::endl
-				<< "            WELCOME TO BSP          " << std::endl
-				<< "------------------------------------" << std::endl
-				<< "Let's check if the Point (" << argv[1] << ", " << argv[2] << ") is inside of a triangle or not." << std::endl
-				<< "The triangle vertices are:"
-				<< "\tA (" << argv[3] << ", " << argv[4] << ")" << std::endl
-				<< "\tB (" << argv[5] << ", " << argv[6] << ")" << std::endl
-				<< "\tC (" << argv[7] << ", " << argv[8] << ")" << std::endl
+				<< "                     WELCOME TO BSP                     " << std::endl
+				<< "--------------------------------------------------------" << std::endl
+				<< "Let's check if the point (" << argv[1] << ", " << argv[2] << ") is inside of a triangle." << std::endl
+				<< "The triangle has the following vertices:" << std::endl
+				<< "Vertex A (" << argv[3] << ", " << argv[4] << ")" << std::endl
+				<< "Vertex B (" << argv[5] << ", " << argv[6] << ")" << std::endl
+				<< "Vertex C (" << argv[7] << ", " << argv[8] << ")" << std::endl
 				<< std::endl;
 	
-//	Fixed*	args = getCoordinates(argv);
-//	if (args != nullptr) {
+	float* args = new float[8];
+
+    for (int i = 1; i < argc; i++) {
+        args[i - 1] = static_cast<float>(std::atof(argv[i]));
+    }
+	
+	//float*	args = getCoordinates(argv);
+	//if (args != nullptr) {
 		
-		Point	point(std::atof(argv[1]), std::atof(argv[2]));
-		Point		a(std::atof(argv[3]), std::atof(argv[4]));
-		Point		b(std::atof(argv[5]), std::atof(argv[6]));
-		Point		c(std::atof(argv[7]), std::atof(argv[8]));
-
-		//Point const	a(0.0f, 0.0f);
-		//Point const	b(0.0f, 0.0f);
-		//Point const	c(2.0f, 3.0f);
-
-		//Point const	point(2.0f, 1.0f);
+		Point	point(args[0], args[1]); //std::atof(argv[1]), std::atof(argv[2]));
+		Point		a(args[2], args[3]); //std::atof(argv[3]), std::atof(argv[4]));
+		Point		b(args[4], args[5]); //std::atof(argv[5]), std::atof(argv[6]));
+		Point		c(args[6], args[7]); //std::atof(argv[7]), std::atof(argv[8]));
 		
 		if (a == b || a == c || b == c)
 			std::cout << "Error: Invalid triangle coordinates. A, B, C must be different." << std::endl;
 		else 
 			checkPoint(a, b, c, point);
-	//	delete[] args;
+		delete[] args;
 	//}
 	return (0);
 }
