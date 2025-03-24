@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/24 11:53:58 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/24 11:54:00 by hutzig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -52,7 +64,7 @@ class	Fixed {
 		static const Fixed	&max(const Fixed &a, const Fixed &b);
 };
 
-// Non-member function
+// Non-member function: overload of the insertion («) operator
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed); // overload of the insertion («) operator
 
 #endif

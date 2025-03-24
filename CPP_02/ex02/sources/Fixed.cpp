@@ -1,22 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/24 12:06:18 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/24 12:08:09 by hutzig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
-// Default Constructor
 Fixed::Fixed(void) : _rawValue(0) {}
 	
-// Parameterized Constructor - convert value into fixed-point
 Fixed::Fixed(const int value) {
 	_rawValue = value << _fractionalBits;
 }
 
-// Parameterized Constructor - convert value into fixed-point
 Fixed::Fixed(const float value) {
 	_rawValue = roundf(value * (1 << _fractionalBits));
 }
 
-// Copy Constructor
 Fixed::Fixed(const Fixed &other) : _rawValue(other._rawValue) {}
 
-// Copy assignment operator overload
 Fixed &Fixed::operator=(const Fixed &other) {
 	if (this != &other) {
 		_rawValue = other._rawValue;
@@ -24,7 +31,6 @@ Fixed &Fixed::operator=(const Fixed &other) {
 	return (*this);
 }
 
-// Destructor
 Fixed::~Fixed(void) {}
 
 int		Fixed::getRawBits(void) const {
@@ -70,9 +76,9 @@ Fixed	&Fixed::operator++(void) {
 }
 
 Fixed	Fixed::operator++(int) {
-	Fixed	tmp(*this);
+	Fixed	original(*this);
 	++(*this);
-	return (tmp);
+	return (original);
 }
 
 Fixed	&Fixed::operator--(void) {
@@ -81,9 +87,9 @@ Fixed	&Fixed::operator--(void) {
 }
 
 Fixed	Fixed::operator--(int) {
-	Fixed	tmp(*this);
+	Fixed	original(*this);
 	--(*this);
-	return (tmp);
+	return (original);
 }
 
 // Static member functions
@@ -92,7 +98,6 @@ const Fixed	&Fixed::min(const Fixed &a, const Fixed &b) { return (a.operator<(b)
 Fixed		&Fixed::max(Fixed &a, Fixed &b)				{ return (a.operator>(b) ? a : b); }
 const Fixed	&Fixed::max(const Fixed &a, const Fixed &b) { return (a.operator>(b) ? a : b); }
 
-// Non-member function
 std::ostream &operator<<(std::ostream &out, const Fixed &fixed) {
 	out << fixed.toFloat();
 	return (out);
