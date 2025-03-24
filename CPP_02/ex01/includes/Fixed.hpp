@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/24 10:01:39 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/24 11:39:08 by hutzig           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
 #include <iostream>
+#include <cmath>
 
 class	Fixed {
 	
@@ -10,20 +23,21 @@ class	Fixed {
 		static const int	_fractionalBits = 8;
 
 	public:
-		Fixed(void);							// default Constructor
-		Fixed(const int value);					// parameterized Constructor
-		Fixed(const float value);				// parameterized Constructor
-		Fixed(const Fixed& other);				// copy Constructor
-		Fixed &operator=(const Fixed &other);	// copy assignment operator overload
-		~Fixed(void);							// default Destructor
+		Fixed(void);							// Default Constructor
+		Fixed(const int value);					// Parameterized Constructor
+		Fixed(const float value);				// Parameterized Constructor
+		Fixed(const Fixed& other);				// Copy Constructor
+		Fixed &operator=(const Fixed &other);	// Copy assignment operator overload
+		~Fixed(void);							// Default Destructor
 		
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);
 
-		float	toFloat(void) const;			// converts the fixed-point value to a floating-point value
-		int		toInt(void) const;				// converts the fixed-point value to an integer value
+		float	toFloat(void) const;			// Member function - Converts the fixed-point value to a floating-point value
+		int		toInt(void) const;				// Member function - Converts the fixed-point value to an integer value
 };
 
-std::ostream &operator<<(std::ostream &out, const Fixed &fixed); // overload of the insertion («) operator
+// Non-member function: overload of the insertion («) operator
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed);
 
 #endif
