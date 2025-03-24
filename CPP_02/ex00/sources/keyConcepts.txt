@@ -1,0 +1,28 @@
+Default Constructor:
+
+This constructor initializes the _rawValue member to 0.
+It is invoked when a Fixed object is created without any arguments.
+It also prints a message indicating that the default constructor is called.
+
+Copy Constructor:
+
+The copy constructor is invoked when a new Fixed object is created as a copy of an existing one.
+It copies the value of _rawValue from the other object and prints a message confirming the invocation.
+
+Copy Assignment Operator:
+
+The copy assignment operator (operator=) allows you to assign the value of one Fixed object to another.
+This operator ensures that the object isn't assigned to itself (via the if (this != &other) check).
+It then copies the _rawValue from the other object and prints a message.
+Returning *this allows for chaining of assignments like a = b = c.
+
+Destructor:
+
+The destructor is invoked when an object is destroyed (e.g., when it goes out of scope). 
+It simply prints a message indicating that the destructor has been called.
+This is where any necessary cleanup of dynamic resources would happen (though not needed here with just a simple integer member).
+
+getRawBits() and setRawBits():
+
+These functions are used to get and set the _rawValue of a Fixed object.
+getRawBits() returns the current value of _rawValue, and setRawBits() updates it.
