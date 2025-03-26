@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:31:11 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/26 14:09:31 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/26 15:28:16 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,39 +26,53 @@ int	main(void) {
 	std::cout	<< "  Copy Constructor & Assignment Tests   " << std::endl;
 	std::cout	<< "----------------------------------------" << std::endl;
 	DiamondTrap	d(c);	// Copy Constructor
+	std::cout	<< "----------------------------------------" << std::endl;
 	d = b;			    // Copy Assignment Operator
 
+
+	std::cout	<< "----------------------------------------" << std::endl;
+	d.whoAmI();
+	d.howManyPoints(); 
+	b.whoAmI();
+	b.howManyPoints(); 
+
+	
 	std::cout	<< "----------------------------------------" << std::endl;
 	std::cout	<< "                 Attack Tests           "  << std::endl;
 	std::cout	<< "----------------------------------------" << std::endl;
 	a.whoAmI();
+	std::cout	<< "----------------------------------------" << std::endl;
+	a.howManyPoints(); 
+	std::cout	<< "----------------------------------------" << std::endl;
 	a.attack("B");
-	b.takeDamage(20);
+	b.takeDamage(30);
 	
 	a.attack("B");
-	b.takeDamage(20);
+	b.takeDamage(30);
 
 	a.attack("B");
-	b.takeDamage(20);
+	b.takeDamage(30);
 
 	a.attack("B");
-	b.takeDamage(20);
+	b.takeDamage(30);
 
 	a.attack("B");
-	b.takeDamage(20);
+	b.takeDamage(30);
 
 	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "                Edge Cases              " <<  std::endl;
+	b.howManyPoints();
 	std::cout	<< "----------------------------------------" << std::endl;
-	b.attack("A");		// b cannot attack, no hit points left
-	b.beRepaired(10);	// Should fail due to zero hit points
+	
+	b.attack("A");	
+	b.beRepaired(10);
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "             Special Ability            " << std::endl;
 	std::cout	<< "----------------------------------------" << std::endl;
 	a.whoAmI();
+	std::cout	<< "----------------------------------------" << std::endl;
 	a.howManyPoints();
+	std::cout	<< "----------------------------------------" << std::endl;
 	x.whoAmI();
+	std::cout	<< "----------------------------------------" << std::endl;
 	x.howManyPoints();
 	std::cout	<< "----------------------------------------" << std::endl;
 

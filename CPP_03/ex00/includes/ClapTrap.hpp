@@ -22,7 +22,7 @@ class	ClapTrap {
 		std::string			_name;
 		unsigned int		_hitPoints;
 		unsigned int		_energyPoints;
-		unsigned int		_attackPoints;
+		unsigned int		_attackDamage;
 
 	public:
 		ClapTrap(void);								// Default Constructor
