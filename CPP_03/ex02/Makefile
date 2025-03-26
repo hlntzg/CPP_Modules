@@ -17,7 +17,7 @@ HEADER_PATH	=	./includes
 
 SRC 		=	main.cpp \
 				ClapTrap.cpp \
-				FlagTrap.cpp \
+				FragTrap.cpp \
 
 SRC_FILES	=	$(addprefix $(SRC_PATH)/,$(SRC))
 

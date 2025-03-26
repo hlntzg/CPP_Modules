@@ -10,21 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FlagTrap.hpp"
+#include "FragTrap.hpp"
 
 int	main(void) {
 
 	std::cout	<< "----------------------------------------" << std::endl;
 	std::cout	<< "            Constructor Tests           " << std::endl;;
 	std::cout	<< "----------------------------------------" << std::endl;
-	FlagTrap	a("A");
-	FlagTrap	b("B");
-	FlagTrap	c("C");
+	FragTrap	a("A");
+	FragTrap	b("B");
+	FragTrap	c("C");
 
 	std::cout	<< "----------------------------------------" << std::endl;
 	std::cout	<< "  Copy Constructor & Assignment Tests   " << std::endl;
 	std::cout	<< "----------------------------------------" << std::endl;
-	FlagTrap	d(c);	// Copy Constructor
+	FragTrap	d(c);	// Copy Constructor
 	d = b;			    // Copy Assignment Operator
 
 	std::cout	<< "----------------------------------------" << std::endl;
@@ -54,7 +54,7 @@ int	main(void) {
 	std::cout	<< "----------------------------------------" << std::endl;
 	std::cout	<< "             Special Ability            " << std::endl;
 	std::cout	<< "----------------------------------------" << std::endl;
-	a.highFivesGuys();	// Test FlagTrap's unique highFive mode
+	a.highFivesGuys();	// Test FragTrap's unique highFive mode
 
 	std::cout	<< "----------------------------------------" << std::endl;
 
