@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:31:11 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/25 15:52:24 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/27 11:53:51 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,47 +15,63 @@
 
 int	main(void) {
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "            Constructor Tests           " << std::endl;;
-	std::cout	<< "----------------------------------------" << std::endl;
-	ScavTrap	a("A");
-	ScavTrap	b("B");
-	ScavTrap	c("C");
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Creating ScavTraps ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	ScavTrap	scav0;
+	ScavTrap	scav1("ScavOne");
+	ScavTrap	scav2("ScavTwo");
+	ScavTrap	scav3 = scav1;
+	ScavTrap	scav4(scav1);
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "  Copy Constructor & Assignment Tests   " << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	ScavTrap	d(c);	// Copy Constructor
-	d = b;			    // Copy Assignment Operator
+	scav4 = scav0;
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "                 Attack Tests           "  << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	a.attack("B");
-	b.takeDamage(20);
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Attack Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	scav0.attack("ScavOne");            
+	scav1.attack("ScavTwo");
+	scav2.attack("ScavThree");
+	scav3.attack("ScavZero");
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Take Damage Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	scav0.takeDamage(10);
+	scav1.takeDamage(30);
+	scav2.takeDamage(50);
+	scav1.takeDamage(80); // Should reduce hit points to 0
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Be Repaired Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	scav0.beRepaired(10);
+	scav1.beRepaired(20); // Should not be possible, as ScavOne has 0 hit points
+	scav2.beRepaired(15);
+	scav3.beRepaired(25);
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Guard Gate Mode ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	scav0.guardGate();
+	scav1.guardGate();
+	scav2.guardGate();
+	scav3.guardGate();
+	scav4.guardGate();
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "                Edge Cases              " <<  std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	b.attack("A");		// b cannot attack, no hit points left
-	b.beRepaired(10);	// Should fail due to zero hit points
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Draining Energy ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	for (int i = 0; i < 50; i++) {
+		scav3.attack("SOMEONE");
+	}
+	scav3.attack("SOMEONE"); // Should not be possible, energy is 0
+	scav3.beRepaired(5); // Should not be possible, energy is 0
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "             Special Ability            " << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	a.guardGate();	// Test ScavTrap's unique guard mode
-
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Destroying ScavTraps ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	
 	return (0);
 }

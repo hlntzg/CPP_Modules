@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:31:11 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/25 16:52:04 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/27 11:17:36 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,61 @@
 
 int	main(void) {
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "            Constructor Tests           " << std::endl;;
-	std::cout	<< "----------------------------------------" << std::endl;
-	FragTrap	a("A");
-	FragTrap	b("B");
-	FragTrap	c("C");
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Creating FragTraps ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	FragTrap	frag0;
+	FragTrap	frag1("FragOne");
+	FragTrap	frag2("FragTwo");
+	FragTrap	frag3 = frag1;
+	FragTrap	frag4(frag1);
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "  Copy Constructor & Assignment Tests   " << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	FragTrap	d(c);	// Copy Constructor
-	d = b;			    // Copy Assignment Operator
+	frag4 = frag0;
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "                 Attack Tests           "  << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Attack Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	frag0.attack("FragOne");
+	frag1.attack("FragTwo");
+	frag2.attack("FragThree");
+	frag3.attack("FragZero");
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Take Damage Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	frag0.takeDamage(10);
+	frag1.takeDamage(30);
+	frag2.takeDamage(50);
+	frag1.takeDamage(80); // Should reduce hit points to 0
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing Be Repaired Function ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	frag0.beRepaired(10);
+	frag1.beRepaired(20); // Should not be possible, as FragOne has 0 hit points
+	frag2.beRepaired(15);
+	frag3.beRepaired(25);
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Testing High Five Mode ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	frag0.highFivesGuys();
+	frag1.highFivesGuys();
+	frag2.highFivesGuys();
+	frag3.highFivesGuys();
+	frag4.highFivesGuys();
 
-	a.attack("B");
-	b.takeDamage(20);
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Draining Energy ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
+	for (int i = 0; i < 100; i++) {
+		frag3.attack("SOMEONE");
+	}
+	frag3.attack("SOMEONE"); // Should not be possible, energy is 0
+	frag3.beRepaired(5); // Should not be possible, energy is 0
 
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "                Edge Cases              " <<  std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	b.attack("A");		// b cannot attack, no hit points left
-	b.beRepaired(10);	// Should fail due to zero hit points
-
-	std::cout	<< "----------------------------------------" << std::endl;
-	std::cout	<< "             Special Ability            " << std::endl;
-	std::cout	<< "----------------------------------------" << std::endl;
-	a.highFivesGuys();	// Test FragTrap's unique highFive mode
-
-	std::cout	<< "----------------------------------------" << std::endl;
-
+	std::cout	<< "-----------------------------------------" << std::endl
+				<< "[ Destroying FragTraps ]" << std::endl
+				<< "-----------------------------------------" << std::endl;
 	return (0);
 }

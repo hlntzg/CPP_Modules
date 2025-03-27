@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/25 13:32:02 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/26 16:10:43 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/27 11:53:50 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	ScavTrap::attack(const std::string& target) {
 }
 
 void	ScavTrap::guardGate(void) {
-	std::cout << "[ ScavTrap ] " << this->_name << " is now in Gatekeeper mode" << std::endl;
+	std::cout << "[ ScavTrap ] " << this->_name << " is now in Gatekeeper mode." << std::endl;
 }
