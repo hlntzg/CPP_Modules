@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:37:52 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 15:19:45 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:04:11 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Animal &Animal::operator=(const Animal &other) {
 std::string	Animal::getType(void) const { 
 	return (this->_type);
 }
-
+/*
 void		Animal::makeSound(void) const {
 	std::cout	<< "[ Animal ] ... " << std::endl;
-}
+}*/

@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:33:56 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 09:40:57 by hutzig           ###   ########.fr       */
+/*   Created: 2025/03/26 16:29:55 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/28 09:43:36 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
 #include "Animal.hpp"
+#include "Brain.hpp"
 
-class	Dog : public Animal {
+class	Cat : public Animal {
+
+	private:
+		Brain*	_catBrain;
 
 	public:
-		Dog(void);
-		Dog(std::string type);
-		Dog(const Dog &other);
-		~Dog(void) override; // ?
-		Dog &operator=(const Dog &other);
+		Cat(void);
+		Cat(std::string type);
+		Cat(const Cat &other);
+		~Cat(void) override; // ?
+		Cat &operator=(const Cat &other);
 
 		void	makeSound(void) const override;
+		Brain*	getBrain(void);
 };
 
 #endif

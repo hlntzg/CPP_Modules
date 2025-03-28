@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:37:52 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 09:21:56 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:19:23 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ Animal::Animal(std::string type) : _type(type) {
 
 Animal::Animal(const Animal &other) {
 	_type = other._type;
-//    if (this != &other)
-//		*this = other;
 	std::cout	<< "[ Animal ] Copy constructor called" << std::endl;
 }
 

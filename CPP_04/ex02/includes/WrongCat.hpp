@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 16:33:56 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 09:40:57 by hutzig           ###   ########.fr       */
+/*   Created: 2025/03/27 08:41:24 by hutzig            #+#    #+#             */
+/*   Updated: 2025/03/27 09:24:57 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class	Dog : public Animal {
+class	WrongCat : public WrongAnimal {
 
 	public:
-		Dog(void);
-		Dog(std::string type);
-		Dog(const Dog &other);
-		~Dog(void) override; // ?
-		Dog &operator=(const Dog &other);
+		WrongCat(void);
+		WrongCat(std::string type);
+		WrongCat(const WrongCat &other);
+		~WrongCat(void);
+		WrongCat &operator=(const WrongCat &other);
 
-		void	makeSound(void) const override;
+		void	makeSound(void) const;
 };
 
 #endif
