@@ -6,16 +6,16 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:37:09 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 09:45:16 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:43:46 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
 Dog::Dog(void) : Animal() {
+	std::cout	<< "[ Dog ] Default constructor called" << std::endl;
 	this->_type = "Dog";
 	this->_dogBrain = new Brain();
-	std::cout	<< "[ Dog ] Default constructor called" << std::endl;
 }
 
 Dog::Dog(std::string type) : Animal(type) {

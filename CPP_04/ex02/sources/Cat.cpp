@@ -6,16 +6,16 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:37:30 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 09:35:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:41:57 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
 Cat::Cat(void) : Animal() {
+	std::cout << "[ Cat ] Default constructor called" << std::endl;
 	this->_type = "Cat";
 	this->_catBrain = new Brain();
-	std::cout << "[ Cat ] Default constructor called" << std::endl;
 }
 
 Cat::Cat(std::string type) : Animal(type) {

@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:36:14 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 14:23:12 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:35:25 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ int	main(void) {
 		j = new Dog();
 		i = new Cat();
 
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	j->makeSound();
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << meta->getType() << " " << std::endl;
-	meta->makeSound();
-	std::cout << "-----------------------------------------" << std::endl;
+		std::cout << "-----------------------------------------" << std::endl;
+		std::cout << j->getType() << " " << std::endl;
+		j->makeSound();
+		std::cout << "-----------------------------------------" << std::endl;
+		std::cout << i->getType() << " " << std::endl;
+		i->makeSound();
+		std::cout << "-----------------------------------------" << std::endl;
+		std::cout << meta->getType() << " " << std::endl;
+		meta->makeSound();
+		std::cout << "-----------------------------------------" << std::endl;
 	}
 	catch (const std::bad_alloc& e) {
 		std::cerr << "Memory allocation failed: " << e.what() << std::endl;
@@ -66,13 +66,13 @@ int	main(void) {
 		a = new WrongAnimal();
 		cat = new WrongCat();
 
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << cat->getType() << " " << std::endl;
-	cat->makeSound();
-	std::cout << "-----------------------------------------" << std::endl;
-	std::cout << a->getType() << " " << std::endl;
-	a->makeSound();
-	std::cout << "-----------------------------------------" << std::endl;
+		std::cout << "-----------------------------------------" << std::endl;
+		std::cout << cat->getType() << " " << std::endl;
+		cat->makeSound();
+		std::cout << "-----------------------------------------" << std::endl;
+		std::cout << a->getType() << " " << std::endl;
+		a->makeSound();
+		std::cout << "-----------------------------------------" << std::endl;
 	}
 	catch (const std::bad_alloc& e) {
 		std::cerr << "Memory allocation failed: " << e.what() << std::endl;

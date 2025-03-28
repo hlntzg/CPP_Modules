@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:36:14 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 15:08:12 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 15:38:54 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,17 @@ int	main(void) {
 	std::cout	<< "-----------------------------------------" << std::endl
 				<< "[ Abstract class - or not! ]" << std::endl
 				<< "-----------------------------------------" << std::endl
+				<< "...a pointer or reference to an object of" << std::endl
+				<< "its derived class (Dog, Cat) can be build" << std::endl
+				<< "It is not possible to create an object of" << std::endl
+				<< "itself directly. Since 'Animal' is now an" << std::endl
+				<< "abstract class, can't be instantiated. :)" << std::endl
+				<< "-----------------------------------------" << std::endl
 				<< std::endl;
-	
+
+//	Animal	abstractAnimal;
+//	Animal	abstractAnimal("Cat");
+
 	std::cout	<< "-----------------------------------------" << std::endl
 				<< "[ Test: Default ]" << std::endl
 				<< "-----------------------------------------" << std::endl;
