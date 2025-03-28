@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:37:09 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 17:17:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 09:45:16 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,23 @@
 
 Dog::Dog(void) : Animal() {
 	this->_type = "Dog";
-	try {
-		this->_dogBrain = new Brain();
-	}
-	catch (const std::bad_alloc &e) {
-		std::cerr << "[ Dog] Memory allocation failed: " << e.what() << std::endl;
-		// delete this->_catBrain;
-	}
+	this->_dogBrain = new Brain();
 	std::cout	<< "[ Dog ] Default constructor called" << std::endl;
 }
 
 Dog::Dog(std::string type) : Animal(type) {
 	this->_type = "Dog";
+	this->_dogBrain = new Brain();
 	std::cout	<< "[ Dog ] Parameterized constructor called" << std::endl;
 }
 
 Dog::Dog(const Dog &other) : Animal(other) {
+	this->_dogBrain = new Brain(*other._dogBrain);
 	std::cout	<< "[ Dog ] Copy constructor called" << std::endl;
 }
 
 Dog::~Dog(void) {
+	delete this->_dogBrain;
 	std::cout	<< "[ Dog ] Default destructor called" << std::endl;
 }
 
@@ -41,10 +38,15 @@ Dog &Dog::operator=(const Dog &other) {
 	if (this != &other) {
 		Animal::operator=(other);
 	}
+	this->_dogBrain = new Brain(*other._dogBrain);
 	std::cout	<< "[ Dog ] Default destructor called" << std::endl;
 	return (*this);
 }
 
 void	Dog::makeSound() const {
     std::cout << "[ Dog ] Woof woof ..." << std::endl;
+}
+
+Brain*	Dog::getBrain() {
+	return (this->_dogBrain != nullptr ? this->_dogBrain : nullptr);
 }

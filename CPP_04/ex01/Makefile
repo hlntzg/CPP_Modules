@@ -6,11 +6,11 @@
 #    By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/24 12:20:36 by hutzig            #+#    #+#              #
-#    Updated: 2025/03/27 14:56:02 by hutzig           ###   ########.fr        #
+#    Updated: 2025/03/28 13:52:28 by hutzig           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	set_the_world_on_fire
+NAME		=	Brains
 
 SRC_PATH	=	./sources
 HEADER_PATH	=	./includes

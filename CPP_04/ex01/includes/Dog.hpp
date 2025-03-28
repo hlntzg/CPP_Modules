@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:33:56 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 16:19:28 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/28 10:36:11 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,11 @@ class	Dog : public Animal {
 		Dog(void);
 		Dog(std::string type);
 		Dog(const Dog &other);
-		~Dog(void);
+		~Dog(void) override; //?
 		Dog &operator=(const Dog &other);
 
 		void	makeSound(void) const override;
+		Brain*	getBrain(void);
 };
 
 #endif
