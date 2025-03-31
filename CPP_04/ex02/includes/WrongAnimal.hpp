@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 08:33:55 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 14:34:40 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:43:37 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define WRONGANIMAL_HPP
 
 #include <iostream>
-#include <string>
 
 class	WrongAnimal {
 
@@ -25,7 +24,7 @@ class	WrongAnimal {
 		WrongAnimal(void);
 		WrongAnimal(std::string type);
 		WrongAnimal(const WrongAnimal &other);
-		virtual ~WrongAnimal(void);
+		~WrongAnimal(void);
 		WrongAnimal &operator=(const WrongAnimal &other);
 
 		std::string		getType(void) const;

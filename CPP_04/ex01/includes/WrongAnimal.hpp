@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 08:33:55 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/27 14:34:40 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:41:51 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define WRONGANIMAL_HPP
 
 #include <iostream>
-#include <string>
 
 class	WrongAnimal {
 

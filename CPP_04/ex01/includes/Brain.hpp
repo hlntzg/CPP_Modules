@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 14:56:28 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 10:43:48 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:41:31 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 #include "Brain.hpp"
 
 #include <iostream>
-#include <string>
 
 class	Brain {
 

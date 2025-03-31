@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 16:25:49 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/28 15:03:17 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/03/31 08:42:15 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ANIMAL_HPP
 
 #include <iostream>
-#include <string>
 
 class	Animal {
 
