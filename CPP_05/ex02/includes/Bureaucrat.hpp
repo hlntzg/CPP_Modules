@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:11:06 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:24:33 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 13:44:32 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 # define BUREAUCRAT_HPP
 
 #include "AForm.hpp"
+
 #include <iostream>
+#include <string>
+#include <exception>  // for std::exception
 
 class	AForm;
 

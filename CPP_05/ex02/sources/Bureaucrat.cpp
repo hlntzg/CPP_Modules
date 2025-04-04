@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:10:35 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/04 09:38:17 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:10:32 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ void			Bureaucrat::executeForm(AForm const &form) {
 	}
 }
 
-const char*		Bureaucrat::GradeTooHighException::what() const noexcept /* throw()*/ {
+const char*		Bureaucrat::GradeTooHighException::what() const noexcept {
     return ("[ Bureaucrat ] Grade too High!");
 }
 
-const char*		Bureaucrat::GradeTooLowException::what() const noexcept /*throw()*/ {
+const char*		Bureaucrat::GradeTooLowException::what() const noexcept {
     return ("[ Bureaucrat ] Grade too Low!");
 }
 

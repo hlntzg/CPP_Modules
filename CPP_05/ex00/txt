@@ -1,13 +1,9 @@
-If you're using C++11 or later, the best approach is to use noexcept instead of throw(). Here's why:
+In C++11 or later, the best approach is to use noexcept instead of throw():
 
-noexcept vs throw()
-throw() is deprecated in C++11 and onwards. The primary reason is that throw() was used to specify that a function does not throw any exceptions, but it was a bit too restrictive and confusing, especially when dealing with inheritance and exception polymorphism.
+-- throw() is deprecated in C++11 and onwards. The primary reason is that throw() was used to specify that a function does not throw any exceptions, but it was a bit too restrictive and confusing, especially when dealing with inheritance and exception polymorphism.
 
-noexcept is the modern C++ keyword that serves the same purpose but in a more flexible and clearer manner. It means the function is guaranteed not to throw any exceptions.
+-- noexcept (modern C++) serves the same purpose but in a more flexible and clearer manner. It means the function is guaranteed not to throw any exceptions.
+   It tells that this function is guaranteed not to throw exceptions, improving both safety and performance.
 
-Why prefer noexcept?
-Improved semantics: noexcept is clearer and more meaningful than throw(). It tells the compiler (and the programmer) that this function is guaranteed not to throw exceptions, improving both safety and performance.
-
-Compiler optimizations: If a function is marked noexcept, the compiler can make optimizations that assume no exceptions will be thrown, potentially improving performance.
-
-C++ Standardization: C++11 and later use noexcept, and it's the preferred method in modern C++ code.
+Compiler optimizations:
+If a function is marked noexcept, the compiler can make optimizations that assume no exceptions will be thrown, potentially improving performance.

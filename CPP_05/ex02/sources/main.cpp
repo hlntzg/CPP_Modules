@@ -6,15 +6,15 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:28:33 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/04 10:19:18 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:26:27 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
-#include "AForm.hpp"
-#include "Bureaucrat.hpp"
+//#include "AForm.hpp"
+//#include "Bureaucrat.hpp"
 
 static void	testDefault();
 static void	testCopyConstructorCopyOperator();

@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:11:06 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/31 13:27:32 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 14:43:54 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
+#include <string>
+#include <exception>  // for std::exception
 
 class	Bureaucrat {
 
@@ -37,14 +39,12 @@ class	Bureaucrat {
 		class	GradeTooHighException : public std::exception {
 			
 			public:
-				//virtual const char *what() const throw();
 				virtual const char* what() const noexcept override;
 		};
 
 		class	GradeTooLowException : public std::exception {
 
 			public:
-				//virtual const char *what() const throw();
 				virtual const char* what() const noexcept override; 
 		};
 };

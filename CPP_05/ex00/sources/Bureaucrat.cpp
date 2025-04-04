@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:10:35 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/31 14:40:28 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 14:44:20 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ Bureaucrat::~Bureaucrat(void) {
 
 Bureaucrat	&Bureaucrat::operator=(const Bureaucrat &other) {
 	if (this != &other) {
-//		this->_name = other._name;
 		this->_grade = other._grade;
 	}
 	std::cout	<< "[ Bureaucrat ] Copy assigment operator called" << std::endl;

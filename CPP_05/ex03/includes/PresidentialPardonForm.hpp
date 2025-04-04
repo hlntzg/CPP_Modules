@@ -17,7 +17,6 @@
 
 #include <iostream>
 #include <string>
-//class	Bureaucrat;
 
 class	PresidentialPardonForm : public AForm {
 

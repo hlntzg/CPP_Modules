@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:44:17 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:08:35 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 13:43:57 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include "Bureaucrat.hpp"
 
 #include <iostream>
+#include <string>
+#include <exception>  // for std::exception
 
 class	Bureaucrat;
 

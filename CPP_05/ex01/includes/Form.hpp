@@ -6,15 +6,18 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 13:37:54 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/31 16:19:59 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:01:40 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
 # define FORM_HPP
 
-#include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp" // function implementations require functions from Bureaucrat.hpp
+
 #include <iostream>
+#include <string>
+#include <exception>  // for std::exception
 
 class	Bureaucrat;
 

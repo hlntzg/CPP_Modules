@@ -6,15 +6,18 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:11:06 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/31 15:43:00 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:01:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 
-#include "Form.hpp"
+#include "Form.hpp" // function implementations require functions from Form.hpp
+
 #include <iostream>
+#include <string>
+#include <exception>  // for std::exception
 
 class	Form;
 
@@ -42,14 +45,12 @@ class	Bureaucrat {
 		class	GradeTooHighException : public std::exception {
 			
 			public:
-				//virtual const char *what() const throw();
 				virtual const char* what() const noexcept override;
 		};
 
 		class	GradeTooLowException : public std::exception {
 
 			public:
-				//virtual const char *what() const throw();
 				virtual const char* what() const noexcept override; 
 		};
 };

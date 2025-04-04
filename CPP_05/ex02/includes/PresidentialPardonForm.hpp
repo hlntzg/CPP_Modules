@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:47:25 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:50:53 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:07:25 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 #include <iostream>
 #include <string>
-//class	Bureaucrat;
 
 class	PresidentialPardonForm : public AForm {
 
@@ -32,7 +31,6 @@ class	PresidentialPardonForm : public AForm {
 		PresidentialPardonForm& operator=(const PresidentialPardonForm &other);
 
 		void	execute(Bureaucrat const &executor) const override;
-
 };
 
 #endif

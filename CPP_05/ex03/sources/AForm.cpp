@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:28:19 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/04 14:39:49 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:22:19 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,19 +61,12 @@ void			AForm::beSigned(const Bureaucrat &b) {
 		throw AForm::GradeTooLowException();
 	this->_signedForm = true;
 }
-/*
-void			AForm::execute(Bureaucrat const &executor) const {
-	if (!(this->_signedForm))
-		throw AForm::FormNotSignedException();
-	if (executor.getGrade() > this->getGradeToExecute())
-		throw AForm::GradeTooLowException();
-	this->executeForm();
-}*/
-const char*		AForm::GradeTooHighException::what() const noexcept /*throw()*/ {
+
+const char*		AForm::GradeTooHighException::what() const noexcept {
     return ("... Grade too High!");
 }
 
-const char*		AForm::GradeTooLowException::what() const noexcept /*throw()*/ {
+const char*		AForm::GradeTooLowException::what() const noexcept {
     return ("... Grade too Low!");
 }
 

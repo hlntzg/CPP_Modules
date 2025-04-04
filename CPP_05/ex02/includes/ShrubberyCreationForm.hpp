@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:45:07 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/04 09:40:01 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:07:36 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include <string>
 #include <fstream>  // for std::ofstream
 #include <stdexcept> // for std::runtime_error
-
-//class	Bureaucrat;
 
 class	ShrubberyCreationForm : public AForm {
 	

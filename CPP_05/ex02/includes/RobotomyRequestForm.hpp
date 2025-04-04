@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:46:19 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:51:13 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:07:30 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 #include <string>
 #include <ctime> // for std::time
 #include <cstdlib> // for std::srand
-
-//class	Bureaucrat;
 
 class	RobotomyRequestForm : public AForm {
 	
@@ -35,7 +33,6 @@ class	RobotomyRequestForm : public AForm {
 		RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
 
 		void	execute(Bureaucrat const &executor) const override;
-
 };
 
 #endif

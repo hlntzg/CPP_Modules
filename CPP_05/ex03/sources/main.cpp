@@ -6,13 +6,13 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 12:28:33 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/04 14:40:20 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 15:23:53 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
+//#include "ShrubberyCreationForm.hpp"
+//#include "RobotomyRequestForm.hpp"
+//#include "PresidentialPardonForm.hpp"
 #include "Intern.hpp"
 
 static void	testDefault();
