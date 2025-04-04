@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 14:28:19 by hutzig            #+#    #+#             */
-/*   Updated: 2025/03/31 16:31:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 10:51:15 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,30 +61,23 @@ void			Form::beSigned(const Bureaucrat &b) {
 		throw Form::GradeTooLowException();
 	this->_signedForm = true;
 }
-/*
 
-Form::GradeTooHighException::GradeTooHighException(const std::string& message) : message_(message) {}
-
-// Here the function needs to return "const char*" type value, but message_
-// is a std::string type, so here need use "c_str()" to change message_ to "const char*"
-const char* Form::GradeTooHighException::what() const noexcept { return message_.c_str(); }
-
-Form::GradeTooLowException::GradeTooLowException(const std::string& message) : message_(message){}
-
-const char* Form::GradeTooLowException::what() const noexcept { return message_.c_str(); }
-
-*/
-const char*		Form::GradeTooHighException::what() const throw() {
+const char*		Form::GradeTooHighException::what() const noexcept {
     return ("[ Form ] Grade too High!");
 }
 
-const char*		Form::GradeTooLowException::what() const throw() {
+const char*		Form::GradeTooLowException::what() const noexcept {
     return ("[ Form ] Grade too Low!");
 }
 
 std::ostream	&operator<<(std::ostream &out, const Form &f) {
-	out << "[ Form ] " << f.getName() << ", signed: " << f.getSignedForm() << std::endl
-		<< "[ form ] " << f.getName() << ", required grade to sign: " << f.getGradeToSign() << std::endl
-		<< "[ form ] " << f.getName() << ", required grade to execute: " << f.getGradeToExecute() << std::endl;
+	out << "[ Form ] " << f.getName() << ", signed status: ";
+	if (f.getSignedForm())
+		out << "[✔] form is signed" << std::endl;
+	else
+		out << "[✗] form is not signed" << std::endl;
+	out	<< "[ Form ] " << f.getName() << ", required grade to sign: " << f.getGradeToSign() << std::endl
+		<< "[ Form ] " << f.getName() << ", required grade to execute: " << f.getGradeToExecute();
+	return (out);
 	return (out);
 }
