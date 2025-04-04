@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 09:10:35 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 14:46:18 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 09:38:17 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ void			Bureaucrat::signForm(AForm &f) {
 		std::cout << "[ Bureaucrat ] " << this->_name << " signed " << f.getName() << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cerr << "\e[0;33m" << "[ Bureaucrat ] " << this->_name << " couldn't sign " << f.getName() << ", because " << e.what() << "\e[0m" << std::endl;
-		throw;  // re-throw the exception to propagate it to the caller
+		std::cerr << "\e[0;31m" << "[ Bureaucrat ] " << this->_name << " couldn't sign " << f.getName() << ", because " << e.what() << "\e[0m" << std::endl;
+//		throw;  // re-throw the exception to propagate it to the caller
 	}
 }
 
@@ -79,8 +79,8 @@ void			Bureaucrat::executeForm(AForm const &form) {
 		std::cout << "[ Bureaucrat ] " << this->_name << " successfully executed " << form.getName() << std::endl;
 	}
 	catch (const std::exception &e) {
-		std::cerr << "\e[0;33m" << "[ Bureaucrat ] " << this->_name << " couldn't execute " << form.getName() << ", because " << e.what() << "\e[0m" << std::endl;
-		throw;  // re-throw the exception to propagate it to the caller
+		std::cerr << "\e[0;31m" << "[ Bureaucrat ] " << this->_name << " couldn't execute " << form.getName() << ", because " << e.what() << "\e[0m" << std::endl;
+//		throw;  // re-throw the exception to propagate it to the caller
 	}
 }
 

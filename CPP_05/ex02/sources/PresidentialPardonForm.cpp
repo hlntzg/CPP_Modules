@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:48:24 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:38:03 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 08:58:01 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,5 @@ void	PresidentialPardonForm::execute(Bureaucrat const &executor) const {
 	if (this->getGradeToExecute() < executor.getGrade())
 		throw AForm::GradeTooLowException();
 	
-	std::cout << "[ PRESIDENTIAL PARDON ] " << this->_target << "has been pardoned by Zaphod Beeblebrox" << std::endl;
+	std::cout << "[ Presidential Pardon ] " << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

@@ -6,13 +6,12 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:45:07 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:51:22 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 09:40:01 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#pragma once
-//#ifndef SHRUBBERYCREATIONFORM_HPP
-//# define SHRUBBERYCREATIONFORM_HPP
+#ifndef SHRUBBERYCREATIONFORM_HPP
+# define SHRUBBERYCREATIONFORM_HPP
 
 #include "AForm.hpp"
 
@@ -38,4 +37,4 @@ class	ShrubberyCreationForm : public AForm {
 		void	execute(Bureaucrat const &executor) const override;
 };
 
-//#endif
+#endif

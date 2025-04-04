@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/31 16:48:43 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/03 15:38:39 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/04 09:01:20 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	RobotomyRequestForm::execute(Bureaucrat const &executor) const {
 	if (this->getGradeToExecute() < executor.getGrade())
 		throw AForm::GradeTooLowException();
 
-	std::cout << "[ ROBOTOMY ] ... drilling noises ..." << std::endl;
+	std::cout << "[ Robotomy ] ... drilling noises ... [ volume: ▮▮▮▮▮▮▯▯ ]" << std::endl;
 
 	srand(std::time(0));
 	if (std::rand() % 2)
-		std::cout << "[ ROBOTOMY ] " << this->_target << " has been robotomized successfully." << std::endl;
+		std::cout << "[ Robotomy ] " << this->_target << " has been robotomized successfully." << std::endl;
 	else
-		std::cout << "[ ROBOTOMY ] " << this->_target << " robotomization failed." << std::endl;
+		std::cout << "[ Robotomy ] " << this->_target << " robotomization failed." << std::endl;
 }
