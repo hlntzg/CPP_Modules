@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/04 16:15:20 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/08 11:11:58 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/09 15:57:52 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ enum	e_type {
 	CHAR,
 	INT,
 	FLOAT,
-	DOUBLE
+	DOUBLE,
+	PSEUDOFLOAT,
+	PSEUDODOUBLE,
+	UNKNOWN
 };
 
 /**
