@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:40:05 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/10 15:49:25 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/10 16:03:32 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <sstream>   // For std::stringstream
 #include <limits>	 // 
 #include <cctype>
+#include <iomanip>   // For std::setprecision
+
 /**
  * _isChar: The function checks if the string length is exactly 1, ensures the
  * character is printable (ASCII values from 32 - 126) and it is not a digit.
@@ -180,21 +182,13 @@ static void	_toFloat(const std::string &str, int type) {
 			}
 			std::cout << "float: " << static_cast<int>(value) << ".0f" << std::endl;
 		}
-		else if (type == FLOAT) {
+		else if (type == FLOAT || type == DOUBLE) {
 			std::string temp = str;
-			if (temp.back() == 'f')
+			if (type == FLOAT && temp.back() == 'f')
 				temp.pop_back();
 
-			float value = std::stof(temp);
-			std::cout << "float: " << value << "f" << std::endl;
-		}
-		else if (type == DOUBLE) {
-			std::string temp = str;
-			if (temp.back() == 'f')
-				temp.pop_back();
-
-			float value = static_cast<float>(std::stod(temp));  // Convert double to float
-			std::cout << "float: " << value << "f" << std::endl;
+			float value = static_cast<float>(std::stod(temp));
+			std::cout << "float: " << std::fixed << std::setprecision(1) << value << "f" << std::endl;
 		}
 		else
 			std::cout << "float: impossible" << std::endl;
@@ -205,31 +199,31 @@ static void	_toFloat(const std::string &str, int type) {
 }
 
 static void	_toDouble(const std::string &str, int type) {
-	if (type == CHAR)
-		std::cout << "double: " << static_cast<double>(str[0]) << ".0" <<std::endl;
-	else if (type == INT) {
-		size_t idx;
-		double value = std::stod(str, &idx);
-		if (idx != str.size()) {
-			throw std::invalid_argument("invalid characters");
+	try {
+		if (type == CHAR)
+			std::cout << "double: " << static_cast<double>(str[0]) << ".0" <<std::endl;
+		else if (type == INT) {
+			size_t idx;
+			double value = std::stod(str, &idx);
+			if (idx != str.size()) {
+				throw std::invalid_argument("invalid characters");
+			}
+			std::cout << "double: " << static_cast<int>(value) << ".0" << std::endl;
 		}
-		std::cout << "double: " << static_cast<int>(value) << ".0" << std::endl;
-	}
-	else if (type == FLOAT) {
-		std::string temp = str;
-		if (temp.back() == 'f') 
-			temp.pop_back();
+		else if (type == FLOAT || type == DOUBLE) {
+			std::string temp = str;
+			if (type == FLOAT && temp.back() == 'f')
+				temp.pop_back();
 
-		double value = std::stod(temp);  // Convert string to double
-		std::cout << "double: " << value << std::endl;	
+			double value = std::stod(temp);
+			std::cout << "double: " << std::fixed << std::setprecision(1) << value << std::endl;
+		}
+		else
+			std::cout << "double: impossible" << std::endl;
 	}
-	else if (type == DOUBLE) {
-        double value = std::stod(str);
-        std::cout << "double: " << value << std::endl;
+	catch(const std::exception& e) {
+		std::cout << "float: impossible" << std::endl;
 	}
-	else
-		std::cout << "double: impossible" << std::endl;
-
 }
 
 static void	_typeConversionImpossible(void) {
