@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:40:05 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/10 11:55:34 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/10 15:49:25 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,17 +169,64 @@ static void	_toInt(const std::string &str, int type) {
 }
 
 static void	_toFloat(const std::string &str, int type) {
-	if (type == CHAR)
-		std::cout << "float: " << static_cast<float>(str[0]) << ".0f" <<std::endl;
-	else if (type == INT)
+	try {
+		if (type == CHAR)
+			std::cout << "float: " << static_cast<float>(str[0]) << ".0f" <<std::endl;
+		else if (type == INT) {
+			size_t idx;
+			float value = std::stof(str, &idx);
+			if (idx != str.size()) {
+				throw std::invalid_argument("invalid characters");
+			}
+			std::cout << "float: " << static_cast<int>(value) << ".0f" << std::endl;
+		}
+		else if (type == FLOAT) {
+			std::string temp = str;
+			if (temp.back() == 'f')
+				temp.pop_back();
 
-	else
+			float value = std::stof(temp);
+			std::cout << "float: " << value << "f" << std::endl;
+		}
+		else if (type == DOUBLE) {
+			std::string temp = str;
+			if (temp.back() == 'f')
+				temp.pop_back();
+
+			float value = static_cast<float>(std::stod(temp));  // Convert double to float
+			std::cout << "float: " << value << "f" << std::endl;
+		}
+		else
+			std::cout << "float: impossible" << std::endl;
+	}
+	catch(const std::exception& e) {
 		std::cout << "float: impossible" << std::endl;
+	}
 }
 
 static void	_toDouble(const std::string &str, int type) {
 	if (type == CHAR)
 		std::cout << "double: " << static_cast<double>(str[0]) << ".0" <<std::endl;
+	else if (type == INT) {
+		size_t idx;
+		double value = std::stod(str, &idx);
+		if (idx != str.size()) {
+			throw std::invalid_argument("invalid characters");
+		}
+		std::cout << "double: " << static_cast<int>(value) << ".0" << std::endl;
+	}
+	else if (type == FLOAT) {
+		std::string temp = str;
+		if (temp.back() == 'f') 
+			temp.pop_back();
+
+		double value = std::stod(temp);  // Convert string to double
+		std::cout << "double: " << value << std::endl;	
+	}
+	else if (type == DOUBLE) {
+        double value = std::stod(str);
+        std::cout << "double: " << value << std::endl;
+	}
 	else
 		std::cout << "double: impossible" << std::endl;
 
@@ -230,12 +277,15 @@ void	ScalarConverter::convert(const std::string &str) {
 				printf("in float case\n");
 				_toChar(str, type);
 				_toInt(str, type);
+				_toFloat(str, type);
+				_toDouble(str, type);
 				break ;
 			case DOUBLE:
 				printf("in double case\n");
-			//	_toDouble(str, type);
 				_toChar(str, type);
 				_toInt(str, type);
+				_toFloat(str, type);
+				_toDouble(str, type);
 				break ;
 			case PSEUDOFLOAT:
 				_toPseudoFloat(str);
