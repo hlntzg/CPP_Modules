@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:40:05 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/09 16:34:58 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/10 11:55:34 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 #include <string>    // For std::string
 #include <cctype>    // For std::isprint, std::isdigit
 #include <sstream>   // For std::stringstream
-
+#include <limits>	 // 
+#include <cctype>
 /**
  * _isChar: The function checks if the string length is exactly 1, ensures the
  * character is printable (ASCII values from 32 - 126) and it is not a digit.
@@ -101,24 +102,77 @@ static int	getType(const std::string &str) {
 }
 
 static void	_toChar(const std::string &str, int type) {
-	if (type == CHAR)
-		std::cout << "char: '" << str << "'" << std::endl;
-	else if (type == INT)
-		std::cout << "char: '" << str << "'" << std::endl;
-	else
+	try {
+		if (type == CHAR) {
+			std::cout << "char: '" << str[0] << "'" << std::endl;
+		}
+		else if (type == INT) {
+			int value = std::stoi(str);
+			if (value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max()) {
+				if (isprint(static_cast<unsigned char>(value)))
+					std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+				else
+					std::cout << "char: Non displayable" << std::endl;
+			}
+			else
+                std::cout << "char: impossible" << std::endl;
+		}
+		else if (type == FLOAT || type == DOUBLE) {
+			std::string temp = str;
+            if (type == FLOAT && temp.back() == 'f')
+                temp.pop_back();
+
+            double value = std::stod(temp);
+            if (value >= std::numeric_limits<char>::min() && value <= std::numeric_limits<char>::max()) {
+                if (isprint(static_cast<unsigned char>(value)))
+                    std::cout << "char: '" << static_cast<char>(value) << "'" << std::endl;
+                else
+                    std::cout << "char: Non displayable" << std::endl;
+            } 
+			else
+                std::cout << "char: impossible" << std::endl;
+		}
+	}
+	catch(const std::exception& e) {
 		std::cout << "char: impossible" << std::endl;
+    }
 }
 
 static void	_toInt(const std::string &str, int type) {
-	if (type == CHAR)
-		std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
-	else
+	try {
+		if (type == CHAR)
+			std::cout << "int: " << static_cast<int>(str[0]) << std::endl;
+		else if (type == INT) {
+			size_t	idx;
+			int		value = std::stoi(str, &idx);
+			if (idx != str.size())
+				throw std::invalid_argument("invalid characters");
+			std::cout << "int: " << value << std::endl;
+		}
+		else if (type == FLOAT || type == DOUBLE) {
+			std::string	temp = str;
+			if (type == FLOAT && temp.back() == 'f')
+				temp.pop_back();
+
+			double value = std::stod(temp);
+			if (value >= std::numeric_limits<int>::min() && value <= std::numeric_limits<int>::max()) 
+				std::cout << "int: " << static_cast<int>(value) << std::endl;
+			else
+				std::cout << "int: impossible" << std::endl;
+		}
+		else
+			std::cout << "int: impossible" << std::endl;
+	}
+	catch(const std::exception& e) {
 		std::cout << "int: impossible" << std::endl;
+	}
 }
 
 static void	_toFloat(const std::string &str, int type) {
 	if (type == CHAR)
 		std::cout << "float: " << static_cast<float>(str[0]) << ".0f" <<std::endl;
+	else if (type == INT)
+
 	else
 		std::cout << "float: impossible" << std::endl;
 }
@@ -144,17 +198,16 @@ static void	_toPseudoFloat(const std::string &str) {
 				<< "float: " << str << std::endl
 				<< "double: " << str.substr(0, str.length() - 1) << std::endl;
 }
-/* if nanf or nan, float is nanf, double is nan*/
 static void	_toPseudoDouble(const std::string &str) {
 	std::cout	<< "char: impossible" << std::endl
 				<< "int: impossible" << std::endl
-				<< "float: " << str << std::endl
+				<< "float: " << str << "f" << std::endl
 				<< "double: " << str << std::endl;
 }
 
 void	ScalarConverter::convert(const std::string &str) {
 	if (str.empty()) {
-		_typeConversionImpossible();
+		std::cout	<< "Error: Invalid argument: empty string." << std::endl;
 		return ;
 	}
 	try {
@@ -170,12 +223,19 @@ void	ScalarConverter::convert(const std::string &str) {
 			case INT:
 				_toChar(str, type);
 				_toInt(str, type);
+				_toFloat(str, type);
+				_toDouble(str, type);
 				break ;
 			case FLOAT:
-				_toFloat(str, type);
+				printf("in float case\n");
+				_toChar(str, type);
+				_toInt(str, type);
 				break ;
 			case DOUBLE:
-				_toDouble(str, type);
+				printf("in double case\n");
+			//	_toDouble(str, type);
+				_toChar(str, type);
+				_toInt(str, type);
 				break ;
 			case PSEUDOFLOAT:
 				_toPseudoFloat(str);
