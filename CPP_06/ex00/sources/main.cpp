@@ -6,14 +6,16 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:42:02 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/10 17:11:43 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/11 10:44:23 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
+#include <limits>
 
 #define COLOR "\033[0;35m"
 #define RESET "\033[0;0m"
+
 #if 0
 int	main(int argc, char **argv) {
 
@@ -61,6 +63,9 @@ static void	testInvalid() {
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: '' '' ]" << RESET << std::endl;
 	ScalarConverter::convert("' '");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '😀' ]" << RESET << std::endl;
+	ScalarConverter::convert("😀");
 }
 
 static void	testChar() {
@@ -129,17 +134,27 @@ static void testInteger() {
 	std::cout	<< COLOR <<  "[ Input: '-42' ]" << RESET << std::endl;
 	ScalarConverter::convert("-42");
 	std::cout	<< "-----------------------------------------" << std::endl;
-	std::cout	<< COLOR <<  "[ Input: '2147483647' ]" << RESET << std::endl;
-	ScalarConverter::convert("2147483647");
+	std::cout	<< COLOR <<  "[ Input: 'INT_MAX' ]" << RESET << std::endl;
+	int maxInt = std::numeric_limits<int>::max();
+	std::cout << "INT_MAX = "<< maxInt << std::endl;
+	std::string intStrMax = std::to_string(maxInt);
+	ScalarConverter::convert(intStrMax);
 	std::cout	<< "-----------------------------------------" << std::endl;
-	std::cout	<< COLOR <<  "[ Input: '-2147483648' ]" << RESET << std::endl;
-	ScalarConverter::convert("-2147483648");
+	std::cout	<< COLOR <<  "[ Input: 'INT_MIN' ]" << RESET << std::endl;
+	int minInt = std::numeric_limits<int>::min();
+	std::cout << "INT_MIN = "<< minInt << std::endl;
+	std::string intStrMin = std::to_string(minInt);
+	ScalarConverter::convert(intStrMin);
 	std::cout	<< "-----------------------------------------" << std::endl;
-	std::cout	<< COLOR <<  "[ Input: '+2147483648': Overflow ]" << RESET << std::endl;
-	ScalarConverter::convert("2147483648");
+	std::cout	<< COLOR <<  "[ Input: Overflow value ]" << RESET << std::endl;
+	std::string intOverflow = "2147483648";
+	std::cout << "Overflow value for int = " << intOverflow << std::endl;
+	ScalarConverter::convert(intOverflow);
 	std::cout	<< "-----------------------------------------" << std::endl;
-	std::cout	<< COLOR <<  "[ Input: '-2147483649': Overflow ]" << RESET << std::endl;
-	ScalarConverter::convert("-2147483649");
+	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
+	std::string intUnderflow = "-2147483649";
+	std::cout << "Underflow value for int = "<< intUnderflow << std::endl;
+	ScalarConverter::convert(intUnderflow);
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: '++1234': Invalid conversion type ]" << RESET << std::endl;
 	ScalarConverter::convert("++1234");
@@ -180,12 +195,66 @@ static void	testFloat() {
 	std::cout	<< COLOR <<  "[ Input: 'nanf' ]" << RESET << std::endl;
 	ScalarConverter::convert("nanf");
 	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: 'FLT_MAX' ]" << RESET << std::endl;
+	float maxFloat = std::numeric_limits<float>::max();
+	std::cout << "FLT_MAX = "<< maxFloat << std::endl;
+	std::string floatStrMax = std::to_string(maxFloat);
+	ScalarConverter::convert(floatStrMax);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: 'FLT_MIN' ]" << RESET << std::endl;
+	float minFloat = std::numeric_limits<float>::min();
+	std::cout << "FLT_MIN = "<< minFloat << std::endl;
+	std::string floatStrMin = std::to_string(minFloat);
+	ScalarConverter::convert(floatStrMin);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: Overflow value ]" << RESET << std::endl;
+	std::string floatOverflow = "1340282346638528859811704183484516925440.0";
+	std::cout << "Overflow value for float = "<< floatOverflow << std::endl;
+	ScalarConverter::convert(floatOverflow);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	// Underflow happens when a number is too small in magnitude (but non-zero): becomes 0.0 or a subnormal (denormal) float
+	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
+	std::string floatUnderflow = "-1.0e-50f";
+	std::cout << "Underflow value for float = "<< floatUnderflow << std::endl;
+	ScalarConverter::convert(floatUnderflow);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '1.2.3f': Invalid conversion type ]" << RESET << std::endl;
+	ScalarConverter::convert("1.2.3f");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '100.0ff': Invalid conversion type ]" << RESET << std::endl;
+	ScalarConverter::convert("100.0ff");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '42.f' ]" << RESET << std::endl;
+	ScalarConverter::convert("42.f");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '.42f' ]" << RESET << std::endl;
+	ScalarConverter::convert(".42f");
 }
+
 static void	testDouble() {
 	std::cout	<< "-----------------------------------------" << std::endl
 				<< "[ Test: string representation for Double ]" << std::endl
 				<< "-----------------------------------------" << std::endl;
-
+	std::cout	<< COLOR <<  "[ Input: '0.0' ]" << RESET << std::endl;
+	ScalarConverter::convert("0.0");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '9.9' ]" << RESET << std::endl;
+	ScalarConverter::convert("9.9");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '-0.5' ]" << RESET << std::endl;
+	ScalarConverter::convert("-0.5");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '+42.0' ]" << RESET << std::endl;
+	ScalarConverter::convert("+42.0");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '1234.5' ]" << RESET << std::endl;
+	ScalarConverter::convert("1234.5");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '42424242.42' ]" << RESET << std::endl;
+	ScalarConverter::convert("42424242.42");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '-42.42' ]" << RESET << std::endl;
+	ScalarConverter::convert("-42.42");
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: '-inf' ]" << RESET << std::endl;
 	ScalarConverter::convert("-inf");
@@ -196,7 +265,43 @@ static void	testDouble() {
 	std::cout	<< COLOR <<  "[ Input: 'nanf' ]" << RESET << std::endl;
 	ScalarConverter::convert("nan");
 	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: 'DBL_MAX' ]" << RESET << std::endl;
+	double maxDouble = std::numeric_limits<double>::max();
+	std::cout << "DBL_MAX = "<< maxDouble << std::endl;
+	std::string doubleStrMax = std::to_string(maxDouble);
+	ScalarConverter::convert(doubleStrMax);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: 'DBL_MIN' ]" << RESET << std::endl;
+	double minDouble = std::numeric_limits<double>::min();
+	std::cout << "DBL_MIN = "<< minDouble << std::endl;
+	std::string doubleStrMin = std::to_string(minDouble);
+	ScalarConverter::convert(doubleStrMin);
+//	std::cout	<< "-----------------------------------------" << std::endl;
+//	std::cout	<< COLOR <<  "[ Input: Overflow value ]" << RESET << std::endl;
+//	double doubleOverflow = std::numeric_limits<double>::max() * 2.0;
+//	std::cout << "Overflow value for double = "<< doubleOverflow << std::endl;
+//	std::string doubleStrOverflow = std::to_string(doubleOverflow);
+//	ScalarConverter::convert(doubleStrOverflow);
+//	std::cout	<< "-----------------------------------------" << std::endl;
+	// Underflow happens when a number is too small in magnitude (but non-zero): becomes 0.0 or a subnormal (denormal) double
+//	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
+//	std::string doubleUnderflow = "1e-320";
+//	std::cout << "Underflow value for double = "<< doubleUnderflow << std::endl;
+	//std::string doubleStrUnderflow = std::to_string(doubleUnderflow);
+//	ScalarConverter::convert(doubleUnderflow);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '1.2.3': Invalid conversion type ]" << RESET << std::endl;
+	ScalarConverter::convert("1.2.3");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '1..23': Invalid conversion type ]" << RESET << std::endl;
+	ScalarConverter::convert("1..23");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '42.' ]" << RESET << std::endl;
+	ScalarConverter::convert("42.");
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: '.42' ]" << RESET << std::endl;
+	ScalarConverter::convert(".42");
+	std::cout	<< "-----------------------------------------" << std::endl;
 }
-
 
 #endif
