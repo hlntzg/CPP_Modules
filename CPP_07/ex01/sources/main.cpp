@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:00:37 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/14 16:02:13 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/14 16:16:07 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,39 @@ void print_element(const T& element) {
     std::cout << element << " ";
 }
 
-// example functor (function object) for int
+// Functor (function object) to uppercase character
+struct CharToUpper {
+    void operator()(char& element) {
+        if (std::isalpha(element))
+            element = std::toupper(element);
+    }
+};
+
+// Functor to append "!" to each string
+struct AppendExclamation {
+    void operator()(std::string& element) {
+        element += "!";
+    }
+};
+
+// Functor to multiply int by 2
 struct MultiplyByTwo {
     void operator()(int& element) {
         element *= 2;
     }
 };
 
-// example of functor (function object) for char
-struct CharToUpper {
-    void operator()(char& element) {
-        if (std::isalpha(element))
-            element = std::toupper(element);
+// Functor to square float values
+struct SquareFloat {
+    void operator()(float& element) {
+        element *= element;
+    }
+};
+
+// Functor to multiply double by 0.5
+struct HalfValue {
+    void operator()(double& element) {
+        element *= 0.5;
     }
 };
 
@@ -112,13 +133,24 @@ static void	testFunctor(void) {
 	char	charArray[] = {'a', 'b', 'c', 'd', 'e', '@', '0', '1', '2', '3'};
     size_t	charArraySize = sizeof(charArray) / sizeof(charArray[0]);
 
-    std::cout << "Using functor (to uppercase): ";
+    std::cout << "Using functor (uppercase a-z, A-Z): ";
     CharToUpper uppercase;
     iter(charArray, charArraySize, uppercase);
     iter(charArray, charArraySize, print_element<char>);
     std::cout << std::endl;
 	std::cout	<< "-----------------------------------------" << std::endl;
 
+    std::cout   << COLOR << "[ Array type: String ]" << RESET << std::endl;
+    std::string strArray[] = {"hello", "world", "functor", "test"};
+    size_t strArraySize = sizeof(strArray) / sizeof(strArray[0]);
+
+    std::cout << "Using functor (append '!'): ";
+    AppendExclamation addExclamation;
+    iter(strArray, strArraySize, addExclamation);
+    iter(strArray, strArraySize, print_element<std::string>);
+    std::cout << std::endl;
+    std::cout   << "-----------------------------------------" << std::endl;
+	
 	std::cout	<< COLOR << "[ Array type: Integer ]" << RESET << std::endl;
 	int		intArray[] = {1, 2, 3, 4, 5};
     size_t	intArraySize = sizeof(intArray) / sizeof(intArray[0]);
@@ -128,6 +160,29 @@ static void	testFunctor(void) {
     iter(intArray, intArraySize, multiply);
     iter(intArray, intArraySize, print_element<int>);
     std::cout << std::endl;
+    std::cout   << "-----------------------------------------" << std::endl;
+
+    std::cout   << COLOR << "[ Array type: Float ]" << RESET << std::endl;
+    float floatArray[] = {1.0f, 2.0f, 3.0f, 4.0f, 5.0f};
+    size_t floatArraySize = sizeof(floatArray) / sizeof(floatArray[0]);
+
+    std::cout << "Using functor (square): ";
+    SquareFloat square;
+    iter(floatArray, floatArraySize, square);
+    iter(floatArray, floatArraySize, print_element<float>);
+    std::cout << std::endl;
+    std::cout   << "-----------------------------------------" << std::endl;
+    
+	std::cout   << COLOR << "[ Array type: Double ]" << RESET << std::endl;
+    double doubleArray[] = {10.0, 20.0, 30.0, 40.0, 50.0};
+    size_t doubleArraySize = sizeof(doubleArray) / sizeof(doubleArray[0]);
+
+    std::cout << "Using functor (divide by 2): ";
+    HalfValue half;
+    iter(doubleArray, doubleArraySize, half);
+    iter(doubleArray, doubleArraySize, print_element<double>);
+    std::cout << std::endl;
+
 }
 
 static void	testNullArray(void) {
