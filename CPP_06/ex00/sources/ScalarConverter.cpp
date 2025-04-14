@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:40:05 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/11 10:46:56 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:21:45 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 #include <string>    // For std::string
 #include <cctype>    // For std::isprint, std::isdigit
 #include <sstream>   // For std::stringstream
-#include <limits>	 // 
-#include <cctype>
+#include <limits>	 // For std::numeric_limits
 #include <iomanip>   // For std::setprecision
 
 /**
@@ -23,7 +22,7 @@
  * character is printable (ASCII values from 32 - 126) and it is not a digit.
  */
 static bool	_isChar(const std::string &str) {
-	return (str.length() == 1 /*&& std::isprint(str[0])*/ && !std::isdigit(str[0]));	
+	return (str.length() == 1 && !std::isdigit(str[0]));	
 }
 
 /**
@@ -67,22 +66,16 @@ static bool	_isFloat(const std::string &str) {
 	float	value;
     ssObj >> value;
     return (ssObj.eof() && !ssObj.fail());
-
-	/*    char* end = nullptr;
-    float value = std::strtof(tmp.c_str(), &end);
-    // Check if parsing was successful and consumed the entire string
-    return end == tmp.c_str() + tmp.size();
-	*/
 }
 
 static bool	_isPseudoFloat(const std::string &str) {
-	if (str == "-inff" || str == "+inff" || str == "nanf")
+	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "inff")
 		return (true);
 	return (false);
 }
 
 static bool	_isPseudoDouble(const std::string &str) {
-	if (str == "-inf" || str == "+inf" || str == "nan")
+	if (str == "-inf" || str == "+inf" || str == "nan" || str == "inf")
 		return (true);
 	return (false);
 }
@@ -132,11 +125,11 @@ static void	_toChar(const std::string &str, int type) {
                     std::cout << "char: Non displayable" << std::endl;
             } 
 			else
-                std::cout << "char: impossible" << std::endl;
+               std::cout << "char: impossible" << std::endl;
 		}
 	}
 	catch(const std::exception& e) {
-		std::cout << "char: impossible" << std::endl;
+		std::cout << "char conversion error: " << e.what() << std::endl;
     }
 }
 
@@ -166,7 +159,7 @@ static void	_toInt(const std::string &str, int type) {
 			std::cout << "int: impossible" << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cout << "int: impossible" << std::endl;
+		std::cout << "int conversion error: " << e.what() << std::endl;
 	}
 }
 
@@ -194,7 +187,7 @@ static void	_toFloat(const std::string &str, int type) {
 			std::cout << "float: impossible" << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cout << "float: impossible" << std::endl;
+		std::cout << "float conversion error: " << e.what() << std::endl;
 	}
 }
 
@@ -222,7 +215,7 @@ static void	_toDouble(const std::string &str, int type) {
 			std::cout << "double: impossible" << std::endl;
 	}
 	catch(const std::exception& e) {
-		std::cout << "float: impossible" << std::endl;
+		std::cout << "double conversion error: " << e.what() << std::endl;
 	}
 }
 
@@ -251,51 +244,43 @@ void	ScalarConverter::convert(const std::string &str) {
 		std::cout	<< "Error: Invalid argument: empty string." << std::endl;
 		return ;
 	}
-	try {
-		int	type = getType(str);
-		switch (type)
-		{
-			case CHAR:
-				_toChar(str, type);
-				_toInt(str, type);
-				_toFloat(str, type);
-				_toDouble(str, type);
-				break ;
-			case INT:
-				_toChar(str, type);
-				_toInt(str, type);
-				_toFloat(str, type);
-				_toDouble(str, type);
-				break ;
-			case FLOAT:
-				printf("in float case\n");
-				_toChar(str, type);
-				_toInt(str, type);
-				_toFloat(str, type);
-				_toDouble(str, type);
-				break ;
-			case DOUBLE:
-				printf("in double case\n");
-				_toChar(str, type);
-				_toInt(str, type);
-				_toFloat(str, type);
-				_toDouble(str, type);
-				break ;
-			case PSEUDOFLOAT:
-				_toPseudoFloat(str);
-				break ;
-			case PSEUDODOUBLE:
-				_toPseudoDouble(str);
-				break ;
-			case UNKNOWN:
-				_typeConversionImpossible();
-				break ;
-			default:
-				break ;
-//				throw InvalidStringLiteralException();
-		}
-	}
-	catch (const std::exception &e) {
-		std::cout << e.what() << std::endl;
+	int	type = getType(str);
+	switch (type)
+	{
+		case CHAR:
+			_toChar(str, type);
+			_toInt(str, type);
+			_toFloat(str, type);
+			_toDouble(str, type);
+			break ;
+		case INT:
+			_toChar(str, type);
+			_toInt(str, type);
+			_toFloat(str, type);
+			_toDouble(str, type);
+			break ;
+		case FLOAT:
+			_toChar(str, type);
+			_toInt(str, type);
+			_toFloat(str, type);
+			_toDouble(str, type);
+			break ;
+		case DOUBLE:
+			_toChar(str, type);
+			_toInt(str, type);
+			_toFloat(str, type);
+			_toDouble(str, type);
+			break ;
+		case PSEUDOFLOAT:
+			_toPseudoFloat(str);
+			break ;
+		case PSEUDODOUBLE:
+			_toPseudoDouble(str);
+			break ;
+		case UNKNOWN:
+			_typeConversionImpossible();
+			break ;
+		default:
+			break ;
 	}
 }

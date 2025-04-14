@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:42:02 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/11 10:44:23 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/14 10:18:13 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,7 +212,8 @@ static void	testFloat() {
 	std::cout << "Overflow value for float = "<< floatOverflow << std::endl;
 	ScalarConverter::convert(floatOverflow);
 	std::cout	<< "-----------------------------------------" << std::endl;
-	// Underflow happens when a number is too small in magnitude (but non-zero): becomes 0.0 or a subnormal (denormal) float
+	// Underflow happens when a number is too small in magnitude (but non-zero). Depending on the system,
+	// these values might either: Be treated as zero (i.e., float cannot represent them) or throw an error (in rare cases).
 	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
 	std::string floatUnderflow = "-1.0e-50f";
 	std::cout << "Underflow value for float = "<< floatUnderflow << std::endl;
@@ -276,19 +277,19 @@ static void	testDouble() {
 	std::cout << "DBL_MIN = "<< minDouble << std::endl;
 	std::string doubleStrMin = std::to_string(minDouble);
 	ScalarConverter::convert(doubleStrMin);
-//	std::cout	<< "-----------------------------------------" << std::endl;
-//	std::cout	<< COLOR <<  "[ Input: Overflow value ]" << RESET << std::endl;
-//	double doubleOverflow = std::numeric_limits<double>::max() * 2.0;
-//	std::cout << "Overflow value for double = "<< doubleOverflow << std::endl;
-//	std::string doubleStrOverflow = std::to_string(doubleOverflow);
-//	ScalarConverter::convert(doubleStrOverflow);
-//	std::cout	<< "-----------------------------------------" << std::endl;
-	// Underflow happens when a number is too small in magnitude (but non-zero): becomes 0.0 or a subnormal (denormal) double
-//	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
-//	std::string doubleUnderflow = "1e-320";
-//	std::cout << "Underflow value for double = "<< doubleUnderflow << std::endl;
-	//std::string doubleStrUnderflow = std::to_string(doubleUnderflow);
-//	ScalarConverter::convert(doubleUnderflow);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	std::cout	<< COLOR <<  "[ Input: Overflow value ]" << RESET << std::endl;
+	double doubleOverflow = std::numeric_limits<double>::max() * 2.0;
+	std::cout << "Overflow value for double = "<< doubleOverflow << std::endl;
+	std::string doubleStrOverflow = std::to_string(doubleOverflow);
+	ScalarConverter::convert(doubleStrOverflow);
+	std::cout	<< "-----------------------------------------" << std::endl;
+	// Underflow happens when a number is too small in magnitude (but non-zero): 1e-320 is below the minimum normalized positive double
+	// Since the number is extremely close to 0, std::stod might fail or return a denormalized number, which then causes issues when casting 
+	std::cout	<< COLOR <<  "[ Input: Underflow value ]" << RESET << std::endl;
+	std::string doubleUnderflow = "1e-320";
+	std::cout << "Underflow value for double = "<< doubleUnderflow << std::endl;
+	ScalarConverter::convert(doubleUnderflow);
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: '1.2.3': Invalid conversion type ]" << RESET << std::endl;
 	ScalarConverter::convert("1.2.3");
