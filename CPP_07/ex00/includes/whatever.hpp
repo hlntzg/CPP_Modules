@@ -6,13 +6,14 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 16:56:59 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/14 11:04:34 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/17 09:17:49 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
+#include <iostream>
 
 /**
  * swap: Swaps the values of two given parameters.
@@ -29,9 +30,15 @@ void swap(T &a, T &b) {
 /**
  * min:  Compares the two values passed as parameters and returns the smallest one.
  * If they are equal, it returns the second one.
+ * std::is_convertible<..., bool> checks if a < b is valid expression that returns 
+ * something convertible to bool. If static_assert passes, the function compiles. 
  */
 template	<class T>
 T const &min(T &a, T &b) {
+	static_assert(
+        std::is_convertible<decltype(std::declval<T>() < std::declval<T>()), bool>::value,
+        "Type T must support operator<"
+    );
 	return (a < b ? a : b);
 }
 
@@ -41,6 +48,10 @@ T const &min(T &a, T &b) {
  */
 template	<class T>
 T const &max(T &a, T &b) {
+	static_assert(
+        std::is_convertible<decltype(std::declval<T>() > std::declval<T>()), bool>::value,
+        "Type T must support operator>"
+    );
 	return (a > b ? a : b);
 }
 

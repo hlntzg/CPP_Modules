@@ -6,12 +6,16 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 17:00:37 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/14 16:16:07 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/17 09:25:30 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
 
+#include "iter.hpp"
+#include <iostream>
+
+#if 1
 #include <cctype>	// For std::isalpha, std::toupper
 #include <cstddef>	// For size_t
 #include <string>	// For std::string
@@ -217,3 +221,4 @@ static void	testNullArray(void) {
 	std::cout	<< "-----------------------------------------" << std::endl;
 }
 
+#endif
