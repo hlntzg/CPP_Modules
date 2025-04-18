@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:00:08 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/18 15:09:02 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/18 15:25:15 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ class	MutantStack : public std::stack<T, Container> {
 		using std::stack<T, Container>::stack;
 		
 		// Orthodox Canonical Form
-		MutantStack(void) : std::stack<T> {}
-		MutantStack(const MutantStack &other) : std::stack<T>(other) {}
+		MutantStack(void) : std::stack<T, Container>() {}
+		MutantStack(const MutantStack &other) : std::stack<T, Container>(other) {}
 		~MutantStack(void) {}
 		MutantStack &operator=(const MutantStack &other) {
 			if (this != &other) {
-				std::stack<T>::operator=(other);
+				std::stack<T, Container>::operator=(other);
 			}
 			return (*this);
 		}
