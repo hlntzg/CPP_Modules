@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 18:00:08 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/18 12:14:33 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/18 15:09:02 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@
  * MutantStack inherits from std::stack<T, Container>, so it can access public and
  * protected members (empy(), size(), top(), push(), emplace(), pop(), swap()).
  *
- * Iterator functions: In std::stack, the underlying container is a protected member named c.
- * Since you're inheriting from std::stack, you can access it from inside your subclass (MutantStack)
- * this->c.begin() gives you an iterator to the start of the internal container. 
+ * Iterator functions: The underlying container (std::stack) has a protected member (c).
+ * By inheriting from std::stack, MutantStack can access c.
  */
 
 template	<typename T, typename Container = std::deque<T>>
@@ -39,7 +38,7 @@ class	MutantStack : public std::stack<T, Container> {
 		using std::stack<T, Container>::stack;
 		
 		// Orthodox Canonical Form
-		MutantStack(void) {}
+		MutantStack(void) : std::stack<T> {}
 		MutantStack(const MutantStack &other) : std::stack<T>(other) {}
 		~MutantStack(void) {}
 		MutantStack &operator=(const MutantStack &other) {
