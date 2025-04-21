@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:11:20 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/21 11:05:23 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/21 15:51:08 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	main(int argc, char **argv) {
 		btc.processFile(argv[1]);
 	}
 	catch (const std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cout << "Main: " << e.what() << std::endl;
 		return (1);
 	}
 	return (0);

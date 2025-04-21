@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:09:11 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/21 12:08:17 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/21 16:30:23 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 # define BITCOINEXCHANGE_HPP
 
 #include <iostream>
+#include <fstream>	// For std::ifstream
 #include <string>
-
+#include <regex>
+#include <map>
 
 class	BitcoinExchange {
 	
@@ -30,6 +32,10 @@ class	BitcoinExchange {
 
 		void	importDatabase(const std::string& database);
 		void	processFile(const std::string& filename);
+		bool	isValidDate(const std::string& inputDate, const std::string& line);
+		bool	isValidValue(const std::string& inputValue, const std::string& line);
+		bool	isLeapYear(int year);
+		float	findDatabaseValue(const std::string& inputDate);
 
 };
 

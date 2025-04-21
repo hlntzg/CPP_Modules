@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 09:11:01 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/21 14:13:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/21 16:43:43 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,46 +31,47 @@ void	BitcoinExchange::importDatabase(const std::string& database) {
 		throw std::invalid_argument("Error: Invalid file extension. Expected a '.csv' file.");
 
 	std::ifstream	file(database);
+
 	if (!file.is_open())
 		throw std::runtime_error("Error: Failure to open '" + database + "'");
 	if (file.peek() == std::ifstream::traits_type::eof())
-        throw std::runtime_error("Error: File '" + filename + "' is empty");
+		throw std::runtime_error("Error: File '" + database + "' is empty");
 
-	std::string		line;
-	bool			databaseHeader = true;
+	std::string line;
+	const std::regex patternDatabase(R"(^(\d{4}-\d{2}-\d{2}),(-?\d+(?:\.\d+)?)$)");
 
-	while (std::getline(database, line)) {
-		if (databaseHeader) {
-			databaseHeader = false;
-			continue;
-		}
-		try {
+	std::getline(file, line);
+	while (std::getline(file, line)) {
+		if (line.empty())
+			throw std::runtime_error("Error: Invalid database content: Found empty line");
 
-		}
-		catch (const std::exception &e) {
-			std::cout << e.what() << std::endl;
+		std::smatch sm;
+		if (!std::regex_match(line, sm, patternDatabase))
+			throw std::runtime_error("Error: Invalid database content: " + line);
+		
+		std::string databaseDate = sm[1].str();
+		std::string databaseValue = sm[2].str();
+
+		float	value = std::stof(databaseValue);
+		auto result = _database.insert({databaseDate, value});
+		if (!result.second) { // Key already existed - handle duplicate case // result.first points to existing element
+			throw std::runtime_error("Error: Invalid database content: Found duplicate date (YYYY-MM-DD)");
 		}
 	}
-	
-
-    database.close();
+	file.close();
 }
 
+bool	BitcoinExchange::isLeapYear(int	year) {
+	return (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0));
+}
 
+bool	BitcoinExchange::isValidDate(const std::string& inputDate, const std::string& line) {
 
-bool	BitcoinExchange::isValidDate(const std::string& inputDate, std::string line) {
-
-    /*std::regex	dataPattern(R"((\d{4})-(\d{2})-(\d{2}))");
-    std::smatch match;
-
-    if (!std::regex_match(inputDate, match, format))
-        return (false);
-	*/
 	int	year, month, day;
     try {
-        year = std::stoi(inputDate.substr(0, 4));//std::stoi(match[1]);
-        month = std::stoi(inputDate.substr(5, 2));//std::stoi(match[2]);
-        day = std::stoi(inputDate.substr(8, 2));//std::stoi(match[3]);
+		year = std::stoi(inputDate.substr(0, 4));
+        month = std::stoi(inputDate.substr(5, 2));
+        day = std::stoi(inputDate.substr(8, 2));
     }
 	catch (...) {
 		std::cout << "Error: bad input => " << line << std::endl;
@@ -79,15 +80,15 @@ bool	BitcoinExchange::isValidDate(const std::string& inputDate, std::string line
 
     int	monthDays[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     if (isLeapYear(year))
-        monthDays[1] = 29;
-
+		monthDays[1] = 29;
+	
 	if (month >= 1 && month <= 12 && day >= 1 && day <= monthDays[month - 1])
 		return (true);
 	std::cout << "Error: bad input => " << line << std::endl;
 	return (false);
 }
 
-bool	BitcoinExchange::isValidValue(const std::string& inputValue, std::string line) {
+bool	BitcoinExchange::isValidValue(const std::string& inputValue, const std::string& line) {
 
 	std::string tmp = inputValue;
 	if (!tmp.empty() && tmp.back() == 'f')
@@ -117,33 +118,6 @@ bool	BitcoinExchange::isValidValue(const std::string& inputValue, std::string li
 	}
 }
 
-/*{
-	if (inputValue.back() == 'f')
-        inputValue.pop_back();
-
-    std::stringstream	ssObj(inputValue);
-    float				floatValue;
-    ssObj >> floatValue;
-
-	if (!ssObj.eof()){
-		std::cout << "Error: bad input " << line << std::endl;
-		return (false);
-	}
-	if (ssObj.fail() && ssObj.eof()){
-		std::cout << "Error: too large a number." << std::endl;
-		return (false);
-	}
-	if (floatValue < 0) {
-		std::cout << "Error: not a positive number." << std::endl;
-		return (false);
-	}
-	if (floatValue > 1000) {
-		std::cout << "Error: too large a number." << std::endl;
-		return (false);
-	}
-	return (true);
-}*/
-
 void	BitcoinExchange::processFile(const std::string& filename) {
 
 	std::ifstream	file(filename);
@@ -155,8 +129,8 @@ void	BitcoinExchange::processFile(const std::string& filename) {
 	
 	std::string	line;
 	bool headerLine = true;
-    const std::regex pattern(R"(^\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(-?\d+(\.\d+)?)\s*$)"); // Regex pattern with strict validation
-
+	const std::regex patternInput(R"(^(\d{4}-\d{2}-\d{2}) \| (-?\d+(?:\.\d+)?)$)");
+/* const std::regex pattern(R"(^\s*(\d{4}-\d{2}-\d{2})\s*\|\s*(-?\d+(\.\d+)?)\s*$)"); // Regex pattern with strict validation */
 	while (std::getline(file, line)) {	
 		if (line.empty())
             continue;
@@ -168,7 +142,7 @@ void	BitcoinExchange::processFile(const std::string& filename) {
 		}
         
 		std::smatch sm;
-        if (!std::regex_match(line, sm, pattern)) {
+        if (!std::regex_match(line, sm, patternInput)) {
             std::cout << "Error: bad input => " << line << std::endl;
             continue;
         }
@@ -179,16 +153,29 @@ void	BitcoinExchange::processFile(const std::string& filename) {
 		if (!isValidDate(inputDate, line) || !isValidValue(inputValue, line))
 			continue; 
 
-		// Lookup rate and print result
 		try {
 			float	value = std::stof(inputValue);
-			float	rate = findClosestValue(inputDate);
+			float	rate = findDatabaseValue(inputDate);
 			float	result = rate * value;
 			std::cout << inputDate << " => " << value << " = " << result << std::endl;
 		}
 		catch (const std::exception& e) {
-			std::cout << "Error: bad input => " << line << std::endl;
+			std::cout << e.what() << std::endl;
 		}
 	}
 	file.close();
+}
+
+// Since std::map is ordered by keys, dates in "YYYY-MM-DD" format sort lexicographically — so the chronological order works naturally
+float	BitcoinExchange::findDatabaseValue(const std::string& inputDate) {
+
+	auto it = _database.lower_bound(inputDate);
+	if (it != _database.end() && it->first == inputDate)
+		return (it->second);
+
+	if (it == _database.begin())
+		throw std::runtime_error("Error: No exchange rate available for or before '" + inputDate + "'.");
+
+	it--;
+	return (it->second);
 }
