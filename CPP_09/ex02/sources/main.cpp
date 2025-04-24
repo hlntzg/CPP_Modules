@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 09:19:42 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/23 16:21:05 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/24 17:19:40 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,25 @@ int	main(int argc, char **argv) {
 	}*/
 
 	try {
-
-		/// if validate input first, it is possible print 'Before: ' + loop argv elements
 		
 		PmergeMe	pmm;
-		
-		// start time
-		pmm.importData(pmm.getVector(), argv + 1);
-		// run algorithm
-		// stop time
-
+	
+		pmm.importData(pmm.getInput(), argv + 1);
 		std::cout << "Before:\t";
-		pmm.printElements(pmm.getVector());
+		pmm.printElements(pmm.getInput());
+
+		pmm.run(pmm.getVector(), VECTOR);		
+		pmm.run(pmm.getDeque(), DEQUE);		
+		
 		std::cout << "After:\t";
 		pmm.printElements(pmm.getVector());
 
-		// start time
-		pmm.importData(pmm.getDeque(), argv + 1);
-		// run algorithm
-		// stop time
+		std::cout << "Time to process a range of " << pmm.getVector().size()
+				  << " elements with std::vector : " << pmm.getVectorTime() << " us" << std::endl;
 
+		std::cout << "Time to process a range of " << pmm.getDeque().size()
+				  << " elements with std::deque : " << pmm.getDequeTime() << " us" << std::endl;
 
-
-	////// pmm.printElements(pmm.getDeque());
 	}
 	catch (const std::exception &e) {
 		std::cerr << e.what() << std::endl;
