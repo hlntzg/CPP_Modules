@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 08:45:08 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/24 17:17:02 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/24 18:06:17 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,32 @@ class	PmergeMe {
 		double				_elapsedTimeVector;
 		double				_elapsedTimeDeque;
 
+		template <typename Container>
+			void mergeInsertSort(Container& container) {
+			std::cout << "Hi from merge insert sort!" << container.back() << std::endl;
+		}
+
 	public:
 		PmergeMe(void);
 		PmergeMe(const PmergeMe &other);
 		~PmergeMe(void);
 		PmergeMe &operator=(const PmergeMe &other);
 
-		std::vector<int>&	getInput() { return(_input); }
+		std::vector<int>&	getInput();
 		std::vector<int>&	getVector();
 		std::deque<int>&	getDeque();
 	
-		double				getVectorTime() const { return(_elapsedTimeVector); }
-		double				getDequeTime() const { return(_elapsedTimeDeque); }
+		double				getVectorTime() const;
+		double				getDequeTime() const;
 
 		template <typename Container>
-			void run(Container& container,/* char	**argv, */ContainerType type) {
+			void run(Container& container, ContainerType type) {
+				
 				auto start = std::chrono::high_resolution_clock::now();
 				container.clear();
 				container.insert(container.end(), getInput().begin(), getInput().end());
-		//importData(container, argv);
-				//mergeInsertSort(container);  // Ford-Johnson sort implementation (not yet)
+				
+				mergeInsertSort(container);  // Ford-Johnson sort implementation
 				std::this_thread::sleep_for(std::chrono::milliseconds(200));
 
 				auto end = std::chrono::high_resolution_clock::now();
@@ -66,12 +72,7 @@ class	PmergeMe {
 						_elapsedTimeVector = duration.count();
 				if (type == DEQUE)
 						_elapsedTimeDeque = duration.count();
-				//std::cout << "After:\t";
-				//printElements(container);
-				//std::cout << "Time to process a range of " << container.size()
-				//	<< " elements with " << containerName << " : "
-				//	<< duration.count() << " us" << std::endl;
-			}
+		}
 
 		template <typename Container>
 			void	importData(Container& container, char **argv) {
