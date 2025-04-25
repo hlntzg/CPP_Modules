@@ -35,10 +35,41 @@ std::deque<int>&	PmergeMe::getDeque() { return _deque; }
 double				PmergeMe::getVectorTime() const { return _elapsedTimeVector; }
 double				PmergeMe::getDequeTime() const { return _elapsedTimeDeque; }
 
-/*
-template <typename Container>
-void	PmergeMe::mergeInsertSort(Container& container) {
 
-	std::cout << "Hi from merge insert sort!" << std::endl;
-	printElements(container);
-}*/
+// Jacobsthal Sequence J(n) = J(n-1) + 2 × J(n-2)
+// Returns a vector that contains the numbers from Jacobsthal sequence ({0, 1, 3, 5, ...}) less than or equal to the limit (B.size())
+std::vector<size_t> PmergeMe::generateJacobsthalNumbers(size_t limit) {
+	std::vector<size_t> sequence = {0, 1};
+	while (sequence.back() < limit) {
+		sequence.push_back(sequence[sequence.size() - 1] + 2 * sequence[sequence.size() - 2]);
+	}
+	return (sequence);
+}
+
+// returns a sequence of indices!!
+// Returns a full permutation of [0, ..., bSize - 1] representing the order 
+// in which you should insert elements from B into A
+std::vector<size_t> PmergeMe::generateOptimalInsertOrder(size_t bSize) {
+
+	std::vector<size_t> jcbs = generateJacobsthalNumbers(bSize);
+
+	std::vector<size_t>	insertOrder;
+	std::vector<bool> 	used(bSize, false);
+	// Skip J(0) = 0 to avoid biasing the first insertion (more balanced insert pattern)
+	for (size_t i = 1; i < jcbs.size(); i++) 
+	{
+		size_t jcbsN = jcbs[i];
+		if (jcbsN < bSize && !used[jcbsN]) {
+			insertOrder.push_back(jcbsN);
+			used[jcbsN] = true;
+		}
+	}
+
+	// Fill in remaining indices in increasing order (0 to bSize - 1)
+	for (size_t i = 0; i < bSize; i++) {
+		if (!used[i]) 
+			insertOrder.push_back(i);
+	}
+
+	return (insertOrder);
+}

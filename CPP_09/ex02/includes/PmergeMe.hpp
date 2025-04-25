@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 08:45:08 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/24 18:06:17 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/25 09:12:05 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,11 @@ class	PmergeMe {
 		double				_elapsedTimeVector;
 		double				_elapsedTimeDeque;
 
-		template <typename Container>
-			void mergeInsertSort(Container& container) {
-			std::cout << "Hi from merge insert sort!" << container.back() << std::endl;
-		}
+		template <typename T>
+		void mergeInsertSort(T& container);
+		
+		template <typename T>
+		void binaryInsertion(T& container, int num);
 
 	public:
 		PmergeMe(void);
@@ -55,48 +56,20 @@ class	PmergeMe {
 		double				getVectorTime() const;
 		double				getDequeTime() const;
 
-		template <typename Container>
-			void run(Container& container, ContainerType type) {
-				
-				auto start = std::chrono::high_resolution_clock::now();
-				container.clear();
-				container.insert(container.end(), getInput().begin(), getInput().end());
-				
-				mergeInsertSort(container);  // Ford-Johnson sort implementation
-				std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		template <typename C>
+		void 	run(C& container, ContainerType type);
 
-				auto end = std::chrono::high_resolution_clock::now();
-				std::chrono::duration<double, std::micro> duration = end - start;
-				
-				if (type == VECTOR)
-						_elapsedTimeVector = duration.count();
-				if (type == DEQUE)
-						_elapsedTimeDeque = duration.count();
-		}
-
-		template <typename Container>
-			void	importData(Container& container, char **argv) {
-				
-				int		n;
-				char	rest;
-
-				while (*argv) {
-					std::istringstream	token(*argv);
-					if (!(token >> n) || token >> rest || n < 0)
-						throw std::runtime_error("Error: All inputs must be positive integers.");
-					container.push_back(n);
-					argv++;
-				}
-			}
+		template <typename C>
+		void	importData(C& container, char **argv);
 			
-		template <typename Container>
-			void	printElements(Container& container) {
-
-				for (typename Container::const_iterator it = container.begin(); it != container.end(); it++)
-					std::cout << *it << " ";
-				std::cout << std::endl;
-			}
+		template <typename C>
+		void	printElements(C& container);
 		
+		std::vector<size_t> generateJacobsthalNumbers(size_t limit);
+		std::vector<size_t> generateOptimalInsertOrder(size_t bSize);
+
 };
+
+#include "PmergeMe.tpp"
 
 #endif

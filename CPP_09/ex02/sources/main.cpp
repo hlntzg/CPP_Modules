@@ -41,7 +41,7 @@ int	main(int argc, char **argv) {
 				  << " elements with std::vector : " << pmm.getVectorTime() << " us" << std::endl;
 
 		std::cout << "Time to process a range of " << pmm.getDeque().size()
-				  << " elements with std::deque : " << pmm.getDequeTime() << " us" << std::endl;
+				  << " elements with std::deque  : " << pmm.getDequeTime() << " us" << std::endl;
 
 	}
 	catch (const std::exception &e) {

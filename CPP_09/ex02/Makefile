@@ -16,7 +16,7 @@ SRC_PATH	=	./sources
 HEADER_PATH	=	./includes
 
 SRC 		=	main.cpp \
-				PmergeMe.cpp \
+				PmergeMe.cpp 
 
 SRC_FILES	=	$(addprefix $(SRC_PATH)/,$(SRC))
 
