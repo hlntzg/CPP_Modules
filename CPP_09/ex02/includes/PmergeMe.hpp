@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <string>
-#include <stdexcept> // for std::runtime_error
+#include <exception>
 #include <vector>
 #include <deque>
 #include <sstream>	 // for std::istringstream

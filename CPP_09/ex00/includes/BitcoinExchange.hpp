@@ -14,16 +14,23 @@
 # define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <fstream>	// For std::ifstream
+#include <fstream>	// for std::ifstream
 #include <string>
-#include <regex>
+#include <regex> 	// for std::regex
 #include <map>
+#include <exception> 
 
 class	BitcoinExchange {
 	
 	private:
+		// Database of exchange rates
 		std::map<std::string, float>	_database;
-
+		
+		bool	isValidDate(const std::string& inputDate, const std::string& line) const;
+		bool	isValidValue(const std::string& inputValue, const std::string& line) const;
+		bool	isLeapYear(int year) const;
+		float	findDatabaseValue(const std::string& inputDate);
+	
 	public:
 		BitcoinExchange(void);
 		BitcoinExchange(const BitcoinExchange &other);
@@ -32,11 +39,6 @@ class	BitcoinExchange {
 
 		void	importDatabase(const std::string& database);
 		void	processFile(const std::string& filename);
-		bool	isValidDate(const std::string& inputDate, const std::string& line);
-		bool	isValidValue(const std::string& inputValue, const std::string& line);
-		bool	isLeapYear(int year);
-		float	findDatabaseValue(const std::string& inputDate);
-
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 16:58:29 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/22 12:01:44 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/04/23 08:28:42 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class	RPN {
 		RPN(void);
 		RPN(const RPN &other);
 		~RPN(void);
-		RPN operator=(const RPN &other);
+		RPN &operator=(const RPN &other);
 		
 		void	processInput(const std::string &input);
 		void	performOperation(char token);
