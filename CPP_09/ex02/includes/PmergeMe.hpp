@@ -42,34 +42,47 @@ class	PmergeMe {
 		
 		template <typename T>
 		void binaryInsertion(T& container, int num);
+		
+		std::vector<size_t> generateJacobsthalNumbers(size_t limit);
+		std::vector<size_t> generateOptimalInsertOrder(size_t bSize);
 
 	public:
 		PmergeMe(void);
 		PmergeMe(const PmergeMe &other);
 		~PmergeMe(void);
 		PmergeMe &operator=(const PmergeMe &other);
-
-		std::vector<int>&	getInput();
-		std::vector<int>&	getVector();
-		std::deque<int>&	getDeque();
-	
-		double				getVectorTime() const;
-		double				getDequeTime() const;
+		
+		void	runAlgorithmVectorContainer(int argc, char **argv);
+		void	runAlgorithmDequeContainer(int argc, char **argv);
+		void	displayInformations(void);
 
 		template <typename C>
-		void 	run(C& container, ContainerType type);
+		void	importData(C& container, int argc, char **argv) {
+			if (argc < 2)
+				throw std::runtime_error("Error: Wrong number of arguments.\nUsage: ./PmergeMe 'positive integer sequence'");
+    	
+			int		n;
+    		char	rest;
 
-		template <typename C>
-		void	importData(C& container, char **argv);
+    		while (*argv) {
+    			std::istringstream	token(*argv);
+    			if (!(token >> n) || token >> rest || n < 0)
+    				throw std::runtime_error("Error: All inputs must be positive integers.");
+    			container.push_back(n);
+    			argv++;
+    		}	
+    	}
 			
 		template <typename C>
-		void	printElements(C& container);
+		void	printElements(C& container) {
+			for (typename C::const_iterator it = container.begin(); it != container.end(); it++)
+				std::cout << *it << " ";
+			std::cout << std::endl;
+		}
 		
-		std::vector<size_t> generateJacobsthalNumbers(size_t limit);
-		std::vector<size_t> generateOptimalInsertOrder(size_t bSize);
 
+
+		
 };
-
-#include "PmergeMe.tpp"
 
 #endif

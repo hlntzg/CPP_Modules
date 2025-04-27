@@ -29,13 +29,6 @@ PmergeMe &PmergeMe::operator=(const PmergeMe &other) {
 	return (*this);
 }
 
-std::vector<int>&	PmergeMe::getInput() { return _input; }
-std::vector<int>&	PmergeMe::getVector() { return _vector; }
-std::deque<int>&	PmergeMe::getDeque() { return _deque; }
-double				PmergeMe::getVectorTime() const { return _elapsedTimeVector; }
-double				PmergeMe::getDequeTime() const { return _elapsedTimeDeque; }
-
-
 // Jacobsthal Sequence J(n) = J(n-1) + 2 × J(n-2)
 // Returns a vector that contains the numbers from Jacobsthal sequence ({0, 1, 3, 5, ...}) less than or equal to the limit (B.size())
 std::vector<size_t> PmergeMe::generateJacobsthalNumbers(size_t limit) {
@@ -72,4 +65,106 @@ std::vector<size_t> PmergeMe::generateOptimalInsertOrder(size_t bSize) {
 	}
 
 	return (insertOrder);
+}
+
+void	PmergeMe::runAlgorithmVectorContainer(int argc, char **argv) {
+
+		auto start = std::chrono::high_resolution_clock::now();
+		importData(_vector, argc, argv + 1);
+		mergeInsertSort(_vector);  // Ford-Johnson sort implementation
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double, std::micro> duration = end - start;
+        
+		_elapsedTimeVector = duration.count();
+}
+
+void	PmergeMe::runAlgorithmDequeContainer(int argc, char **argv) {
+	
+		auto start = std::chrono::high_resolution_clock::now();
+		importData(_deque, argc, argv + 1);
+		mergeInsertSort(_deque);  // Ford-Johnson sort implementation
+		auto end = std::chrono::high_resolution_clock::now();
+		std::chrono::duration<double, std::micro> duration = end - start;
+
+		_elapsedTimeDeque = duration.count();
+}
+
+void	PmergeMe::displayInformations(void) {
+		
+		std::cout << "Before:\t";
+		printElements(_input);
+
+		std::cout << "After:\t";
+		printElements(_vector);
+
+		std::cout << "Time to process a range of " << _vector.size()
+				  << " elements with std::vector : " << _elapsedTimeVector<< " us" << std::endl;
+
+		std::cout << "Time to process a range of " << _deque.size()
+				  << " elements with std::deque  : " << _elapsedTimeDeque << " us" << std::endl;
+
+}
+
+
+// Template function to perform binary insertion into a sorted container
+template <typename T>
+void PmergeMe::binaryInsertion(T& container, int num) {
+    int left = 0;                // Start of the container
+    int right = container.size(); // End of the container (exclusive)
+
+    // Binary search to find the correct position for num
+    while (left < right) {
+        int mid = left + (right - left) / 2; // Find the middle position
+        if (num < container[mid]) {
+            right = mid;  // Narrow the search to the left half
+        } else {
+            left = mid + 1; // Narrow the search to the right half
+        }
+    }
+
+    // Insert num at the position found by binary search (at index `left`)
+    container.insert(container.begin() + left, num);
+}
+
+template <typename T>
+void PmergeMe::mergeInsertSort(T& container) {
+	
+	int size = container.size();
+	if (container.size() < 2)
+		return ;
+	
+	// 1#	Pair elements and store them into group A (bigger values) and B (smaller values) by comparing elements in pairs.
+	std::vector<std::pair<int, int>> pairs;
+	for (int i = 0; i < size - 1; i += 2) 
+	{
+		int first = container[i];
+		int second = container[i + 1];
+		if (first < second)
+			pairs.emplace_back(second, first);
+		else
+			pairs.emplace_back(first, second);
+	}
+	
+	T A, B;
+	for (const auto& p : pairs) {
+		A.push_back(p.first);
+		B.push_back(p.second);
+	}
+	if (size % 2 == 1)
+		A.push_back(container.back());
+
+	// 2#	Recursively sort the group A
+	mergeInsertSort(A);
+
+	// 3#	Define the order elements of B should be insert into A
+	std::vector<size_t> insertOrder = generateOptimalInsertOrder(B.size());
+
+	// 4#	Insert elements of group B into the sorted group A
+	for (size_t index : insertOrder)  { //For each index in the insertOrder…
+		if (index < B.size()) {
+			binaryInsertion(A, B[index]);
+		}
+	}
+
+	container = A;
 }
