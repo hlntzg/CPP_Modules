@@ -15,74 +15,58 @@
 
 #include <iostream>
 #include <string>
-#include <sstream>
+#include <stdexcept> // for std::runtime_error
 #include <vector>
 #include <deque>
-#include <chrono>
-#include <thread>
-/**
- * Sequence Containers:
- * - Vector: STL vector can be defined as the dynamic sized array which can be resized automatically when new elements are added or removed
- * - Deque (or Double-Ended Queue): Sequence containers with the feature of expansion and contraction on both ends. It means we can add and remove the data to and from both ends.
- */
+#include <sstream>	 // for std::istringstream
 
-enum ContainerType { VECTOR, DEQUE };
+/**
+ * A class that performs Ford-Johnson Merge-Insertion Sort (PmergeMe) 
+ * on input sequences using both std::vector and std::deque.
+ * 		  
+ * Handles input parsing, sorting using sequence containers, and timing.
+ * Containers:
+ * - Vector: Dynamic array with contiguous storage.
+ * - Deque: Double-ended queue supporting fast insertions/removals at both ends.
+ */
 
 class	PmergeMe {
 
 	private:
+		// Input storage and working containers
 		std::vector<int>	_input;
 		std::vector<int>	_vector;
 		std::deque<int>		_deque;
+
+		// Timing
 		double				_elapsedTimeVector;
 		double				_elapsedTimeDeque;
-
-		template <typename T>
-		void mergeInsertSort(T& container);
 		
-		template <typename T>
-		void binaryInsertion(T& container, int num);
+		void	mergeInsertionSortVector(std::vector<int>& container);
+		void	mergeInsertionSortDeque(std::deque<int>& container);
 		
 		std::vector<size_t> generateJacobsthalNumbers(size_t limit);
 		std::vector<size_t> generateOptimalInsertOrder(size_t bSize);
+		
+		template <typename C>
+			void	importData(C& container, int argc, char **argv);
+		
+		template <typename T>
+			void	binaryInsertion(T& container, int n);
+		
+		template <typename C>
+			void	printElements(C& container);
 
 	public:
 		PmergeMe(void);
 		PmergeMe(const PmergeMe &other);
 		~PmergeMe(void);
 		PmergeMe &operator=(const PmergeMe &other);
-		
+
+		void	saveData(int argc, char **argv);
 		void	runAlgorithmVectorContainer(int argc, char **argv);
 		void	runAlgorithmDequeContainer(int argc, char **argv);
 		void	displayInformations(void);
-
-		template <typename C>
-		void	importData(C& container, int argc, char **argv) {
-			if (argc < 2)
-				throw std::runtime_error("Error: Wrong number of arguments.\nUsage: ./PmergeMe 'positive integer sequence'");
-    	
-			int		n;
-    		char	rest;
-
-    		while (*argv) {
-    			std::istringstream	token(*argv);
-    			if (!(token >> n) || token >> rest || n < 0)
-    				throw std::runtime_error("Error: All inputs must be positive integers.");
-    			container.push_back(n);
-    			argv++;
-    		}	
-    	}
-			
-		template <typename C>
-		void	printElements(C& container) {
-			for (typename C::const_iterator it = container.begin(); it != container.end(); it++)
-				std::cout << *it << " ";
-			std::cout << std::endl;
-		}
-		
-
-
-		
 };
 
 #endif

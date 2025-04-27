@@ -10,9 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/* This program uses Ford-Johnson sorting algorithm, or merge-insertion sort,
- * to sort a sequence of positive integers */
-
 #include "PmergeMe.hpp"
 
 int	main(int argc, char **argv) {
@@ -20,7 +17,8 @@ int	main(int argc, char **argv) {
 	try {
 		
 		PmergeMe	pmm;
-		
+
+		pmm.saveData(argc, argv);
 		pmm.runAlgorithmVectorContainer(argc, argv);
 		pmm.runAlgorithmDequeContainer(argc, argv);
 		pmm.displayInformations();
