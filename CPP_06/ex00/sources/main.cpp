@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:42:02 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/14 10:18:13 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/06/05 13:36:08 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ static void	testFloat() {
 	ScalarConverter::convert(floatStrMax);
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: 'FLT_MIN' ]" << RESET << std::endl;
-	float minFloat = std::numeric_limits<float>::min();
+	float minFloat = std::numeric_limits<float>::lowest(); //min();
 	std::cout << "FLT_MIN = "<< minFloat << std::endl;
 	std::string floatStrMin = std::to_string(minFloat);
 	ScalarConverter::convert(floatStrMin);
@@ -273,7 +273,7 @@ static void	testDouble() {
 	ScalarConverter::convert(doubleStrMax);
 	std::cout	<< "-----------------------------------------" << std::endl;
 	std::cout	<< COLOR <<  "[ Input: 'DBL_MIN' ]" << RESET << std::endl;
-	double minDouble = std::numeric_limits<double>::min();
+	double minDouble = std::numeric_limits<double>::lowest(); ///min();
 	std::cout << "DBL_MIN = "<< minDouble << std::endl;
 	std::string doubleStrMin = std::to_string(minDouble);
 	ScalarConverter::convert(doubleStrMin);

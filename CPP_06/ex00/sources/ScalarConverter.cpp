@@ -6,7 +6,7 @@
 /*   By: hutzig <hutzig@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 09:40:05 by hutzig            #+#    #+#             */
-/*   Updated: 2025/04/14 10:21:45 by hutzig           ###   ########.fr       */
+/*   Updated: 2025/06/05 13:32:36 by hutzig           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ static void	_toFloat(const std::string &str, int type) {
 			if (idx != str.size()) {
 				throw std::invalid_argument("invalid characters");
 			}
-			std::cout << "float: " << static_cast<int>(value) << ".0f" << std::endl;
+			std::cout << "float: " << static_cast<float>(value) << ".0f" << std::endl;
 		}
 		else if (type == FLOAT || type == DOUBLE) {
 			std::string temp = str;
